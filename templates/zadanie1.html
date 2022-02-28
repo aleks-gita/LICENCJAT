@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 1</title>
+</head>
+<body>
+        <div id="dzialanie">
+                <p> {{ zadanie.wyswietl() }} = ?</p>
+                <form action="{{url_for('zadanie1')}}" method="post">
+		            <input type="submit" name="action" value="Nastepne" class="button">
+	            </form>
+        </div>
+        <div id="wynik">
+             <p> {{ zadanie.wynik() }}</p>
+        <div>
+
+        <div id=checkbox-litery">
+            <p>Lista liter:</p>
+            <table>
+                <form action="{{url_for('zadanie1')}}" method="post">
+                 <tr>
+                      <td><input type="checkbox" id="F" name="F" value="F">
+                          <label for="F"> F </label></td>
+                      <td><input type="checkbox" id="H" name="H" value="H">
+                          <label for="H"> H </label></td>
+                      <td><input type="checkbox" id="J" name="J" value="J">
+                          <label for="J"> J </label></td>
+                 </tr>
+                 <tr>
+                      <td><input type="checkbox" id="K" name="K" value="K">
+                          <label for="K"> K </label></td>
+                      <td><input type="checkbox" id="L" name="L" value="L">
+                          <label for="L"> L </label></td>
+                      <td><input type="checkbox" id="N" name="N" value="N">
+                          <label for="N"> N </label></td>
+                 </tr>
+                 <tr>
+                      <td><input type="checkbox" id="P" name="P" value="P">
+                          <label for="P"> P </label></td>
+                      <td><input type="checkbox" id="Q" name="Q" value="Q">
+                          <label for="Q"> Q </label></td>
+                      <td><input type="checkbox" id="R" name="R" value="R">
+                          <label for="R"> R </label></td>
+                 </tr>
+                 <tr>
+                      <td><input type="checkbox" id="S" name="S" value="S">
+                          <label for="S"> S </label></td>
+                      <td><input type="checkbox" id="T" name="T" value="T">
+                          <label for="T"> T </label></td>
+                      <td><input type="checkbox" id="Y" name="Y" value="Y">
+                          <label for="Y"> Y </label></td>
+                 </tr>
+                    <input type="submit" value="Submit">
+                </form>
+            </table>
+        </div>
+
+</body>
+</html>
