@@ -2,7 +2,9 @@
 from flask import Flask
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.orm import sessionmaker
+import random
 from random import random
+from random import choice
 from random import randrange
 from random import shuffle
 
@@ -30,7 +32,10 @@ class Zadanie:
         self.wylosowne = []
         self.dzialania=[i[0] for i in result]
         self.wywolane = []
+        self.wyswitlane = 0
+        self.rezultat = 0
         self.wylosuj()
+        self.wynik()
 
     def wylosuj(self):
         if len(self.dzialania) == 1:
@@ -43,7 +48,6 @@ class Zadanie:
             self.wywolane.append(wylosowane)
             print(wylosowane)
             print(self.wylosowne)
-            #return wylosowane
             x= self.dzialania.index(wylosowane)
             del self.dzialania[x]
             print(self.dzialania)
@@ -57,19 +61,76 @@ class Zadanie:
     def wyswietl(self):
         qur = session.query(baza_dzialan).filter(baza_dzialan.c.ID.in_(self.wylosowne)).all()
         dzialania_baza = ([i.Dzialanie for i in qur])
-
-        # Printing list using sep Method
-        #print(*ini_list, sep=', ')
         print("DZIAALNIE", str(dzialania_baza))
         print(*dzialania_baza, sep =', ')
-        #self.wynik()
         return dzialania_baza
-    
+
+    def czyszczenie(self):
+        self.wylosowne = []
+
     def wynik(self):
+        #print("WYTLOSOWNAE",self.wylosuj)
         qur = session.query(baza_dzialan).filter(baza_dzialan.c.ID.in_(self.wylosowne)).all()
         wynik_prawda = ([i.Dobry for i in qur])
         wynik_falsz = ([i.Zly for i in qur])
-        self.wylosowne = []
-        return wynik_prawda, wynik_falsz
+        falsz = 0
+        prawda = 0
+        for x in wynik_falsz:
+            falsz = x
+        for x in wynik_prawda:
+            prawda = x
+        print('falsz', falsz)
+        print('prawda', prawda)
+        L= [wynik_prawda, wynik_falsz]
+        self.wyswitlane = choice(L)
+        return self.wyswitlane
+
+    def sprawdzenie(self, status):
+        qur = session.query(baza_dzialan).filter(baza_dzialan.c.ID.in_(self.wylosowne)).all()
+        wynik_prawda = ([i.Dobry for i in qur])
+        wynik_falsz = ([i.Zly for i in qur])
+        y = 0
+        x = 0
+        print("Wylosowana", self.wylosowne)
+        print("Liczba", self.wyswitlane)
+        print("Prawda", wynik_prawda)
+        if self.wyswitlane == wynik_prawda:
+            y = 1
+        if status == "Prawda":
+            x = 1
+        if y == x:
+            print("Zgadza sie")
+            return "Zgadza sie"
+        else:
+            print("Nie zgadza sie")
+            return "Nie zgadza sie"
+
+        #if self.wyswitlane == wynik_falsz and status == "Falsz":
+        #    x = 1
+        #    y = 1
+        #    print("Zgadza sie")
+        #else:
+       #     print("Nie zgadza sie")
+
+        print("FFFFFFFf", status)
+        print("y:", y)
+        print('x', x)
+
+
+    def rezultat(self):
+        qur = session.query(baza_dzialan).filter(baza_dzialan.c.ID.in_(self.wylosowne)).all()
+        wynik_prawda = ([i.Dobry for i in qur])
+        wynik_falsz = ([i.Zly for i in qur])
+
+        if self.wyswitlane == wynik_prawda:
+            self.rezultat = 1
+        else:
+            self.rezultat = 0
+        print("rezultat", self.rezultat)
+        return self.rezultat
+
+
+
+
 
 

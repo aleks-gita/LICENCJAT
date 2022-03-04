@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Click</title>
+<script type="text/javascript">
+    var x = 0;
+function foo(clicked_id)
+{
+	document.getElementById(clicked_id).value = ++x;
+}
+function nowe()
+        {
+            x = 0
+
+        }
+</script>
+</head>
+<body>
+<form name=form1 action="{{url_for('zadanie1')}}" method="get">
+    <input type="text" name= "type" id='F' value="F" size="2" onclick="foo(this.id);" />
+        <label for="F"> F </label>
+    <input type="text" name= "type" id='H'value="H" size="2" onclick="foo(this.id);" />
+        <label for="H"> H </label>
+    <input type="text" name= "action" id='J'value="J" size="2" onclick="foo(this.id);" />
+        <label for="J"> J </label>
+    <input type="button" value="Reset" onclick="reset(); nowe();">
+</form>
+</body>
+</html>

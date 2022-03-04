@@ -3,6 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Zadanie 1</title>
+    <script type="text/javascript">
+        var x = 0;
+        function foo(clicked_id)
+        {
+            document.getElementById(clicked_id).value = ++x;
+        }
+        function nowe()
+        {
+            x = 0
+        }
+    </script>
+
 </head>
 <body>
         <div id="dzialanie">
@@ -12,49 +24,66 @@
 	            </form>
         </div>
         <div id="wynik">
-             <p> {{ zadanie.wynik() }}</p>
-        <div>
+
+                 <p> {{ zadanie.wyswitlane }}</p>
+                 <p> {{ zadanie.rezultat }}</p>
+
+
+                <form action="{{url_for('zadanie1')}}" method="get">
+                        <input type="submit" name="action" value="Prawda" class="button">
+                        <input type="submit" name="action" value="Falsz" class="button">
+                </form>
+
+                {% if x == 1 %}
+                    <p>Dobrze!</p>
+                {% elif x == 0  %}
+                     <p>Zle :C</p>
+                {% endif%}
+
+        </div>
 
         <div id=checkbox-litery">
             <p>Lista liter:</p>
             <table>
-                <form action="{{url_for('zadanie1')}}" method="post">
+                <form name=form1 action="{{url_for('zadanie1')}}" method="post">
                  <tr>
-                      <td><input type="checkbox" id="F" name="F" value="F">
+                      <td><input type="text" name= "type" id='F' value="F" size="2" onclick="foo(this.id);" />
                           <label for="F"> F </label></td>
-                      <td><input type="checkbox" id="H" name="H" value="H">
+                      <td><input type="text" name= "type" id='H' value="H" size="2" onclick="foo(this.id);" />
                           <label for="H"> H </label></td>
-                      <td><input type="checkbox" id="J" name="J" value="J">
+                      <td><input type="text" name= "type" id='J' value="J" size="2" onclick="foo(this.id);" />
                           <label for="J"> J </label></td>
                  </tr>
                  <tr>
-                      <td><input type="checkbox" id="K" name="K" value="K">
+                      <td><input type="text" name= "type" id='K' value="K" size="2" onclick="foo(this.id);"/>
                           <label for="K"> K </label></td>
-                      <td><input type="checkbox" id="L" name="L" value="L">
+                      <td><input type="text" name= "type" id='L' value="L" size="2" onclick="foo(this.id);"/>
                           <label for="L"> L </label></td>
-                      <td><input type="checkbox" id="N" name="N" value="N">
+                      <td><input type="text" name= "type" id='N' value="N" size="2" onclick="foo(this.id);"/>
                           <label for="N"> N </label></td>
                  </tr>
                  <tr>
-                      <td><input type="checkbox" id="P" name="P" value="P">
+                      <td><input type="text" name= "type" id='P' value="P" size="2" onclick="foo(this.id);"/>
                           <label for="P"> P </label></td>
-                      <td><input type="checkbox" id="Q" name="Q" value="Q">
+                      <td><input type="text" name= "type" id='Q' value="Q" size="2" onclick="foo(this.id);"/>
                           <label for="Q"> Q </label></td>
-                      <td><input type="checkbox" id="R" name="R" value="R">
+                      <td><input type="text" name= "type" id='R' value="R" size="2" onclick="foo(this.id);"/>
                           <label for="R"> R </label></td>
                  </tr>
                  <tr>
-                      <td><input type="checkbox" id="S" name="S" value="S">
+                      <td><input type="text" name= "type" id='S'value="S" size="2" onclick="foo(this.id);"/>
                           <label for="S"> S </label></td>
-                      <td><input type="checkbox" id="T" name="T" value="T">
+                      <td><input type="text" name= "type" id='T'value="T" size="2" onclick="foo(this.id);"/>
                           <label for="T"> T </label></td>
-                      <td><input type="checkbox" id="Y" name="Y" value="Y">
+                      <td><input type="text" name= "type" id='Y'value="Y" size="2" onclick="foo(this.id);" />
                           <label for="Y"> Y </label></td>
                  </tr>
+                    <input type="button" value="Reset" onclick="reset(); nowe();">
                     <input type="submit" value="Submit">
+
                 </form>
             </table>
         </div>
 
-</body>
+  </body>
 </html>
