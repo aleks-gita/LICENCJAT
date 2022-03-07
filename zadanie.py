@@ -28,10 +28,13 @@ result= c.fetchall()
 class Zadanie:
     def __init__(self):
         self.litery=['F', 'H', 'J', 'K', 'L', 'N', 'P', 'Q', 'R', 'S', 'T', 'Y']
+        self.litery_wylosowane =[]
         self.zurzyte=[]
         self.wylosowne = []
         self.dzialania=[i[0] for i in result]
         self.wywolane = []
+        self.lista_uzytkownik = {}
+        self.wybrana= None
         self.wyswitlane = 0
         self.rezultat = 0
         self.wylosuj()
@@ -46,12 +49,12 @@ class Zadanie:
             wylosowane = self.dzialania[0]#randrange(1, len(self.dzialania))
             self.wylosowne.append(wylosowane)
             self.wywolane.append(wylosowane)
-            print(wylosowane)
-            print(self.wylosowne)
+            #print(wylosowane)
+            #print(self.wylosowne)
             x= self.dzialania.index(wylosowane)
             del self.dzialania[x]
-            print(self.dzialania)
-            print(len(self.dzialania))
+            #print(self.dzialania)
+            #print(len(self.dzialania))
 
     def przeladowanie(self):
         shuffle(self.wywolane)
@@ -128,6 +131,20 @@ class Zadanie:
             self.rezultat = 0
         print("rezultat", self.rezultat)
         return self.rezultat
+
+    def litery_los(self):
+        self.wybrana = choice(self.litery)
+        self.litery_wylosowane.append(self.wybrana)
+        x = self.litery.index(self.wybrana)
+        del self.litery[x]
+        return self.wybrana
+
+
+
+    def lista(self, index, value):
+        self.lista_uzytkownik = {**self.lista_uzytkownik, **{value: index}}
+        #self.lista_uzytkownik.insert(index - 1, value)
+        print(self.lista_uzytkownik)
 
 
 

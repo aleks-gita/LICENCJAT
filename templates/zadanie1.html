@@ -18,7 +18,9 @@
 </head>
 <body>
         <div id="dzialanie">
-                <p> {{ zadanie.wyswietl() }} = ?</p>
+                {% for x in zadanie.wyswietl() %}
+                <p> {{ x }} = ?</p>
+                {% endfor %}
                 <form action="{{url_for('zadanie1')}}" method="post">
 		            <input type="submit" name="action" value="Nastepne" class="button">
 	            </form>
@@ -39,49 +41,54 @@
                 {% elif x == 0  %}
                      <p>Zle :C</p>
                 {% endif%}
-
+        </div>
+        <div class="litera">
+            {% if zadanie.wybrana != None%}
+            <p>{{zadanie.wybrana }}</p>
+            <p>{{zadanie.litery_wylosowane}}</p>
+            {% endif%}
         </div>
 
         <div id=checkbox-litery">
             <p>Lista liter:</p>
             <table>
-                <form name=form1 action="{{url_for('zadanie1')}}" method="post">
+                <form name=form1 action="{{url_for('zadanie1')}}" method="get">
                  <tr>
-                      <td><input type="text" name= "type" id='F' value="F" size="2" onclick="foo(this.id);" />
+                      <td><input type="text" name= "type" id='F' value=" " size="2" onclick="foo(this.id);" />
                           <label for="F"> F </label></td>
-                      <td><input type="text" name= "type" id='H' value="H" size="2" onclick="foo(this.id);" />
+                      <td><input type="text" name= "type" id='H' value=" " size="2" onclick="foo(this.id);" />
                           <label for="H"> H </label></td>
-                      <td><input type="text" name= "type" id='J' value="J" size="2" onclick="foo(this.id);" />
+                      <td><input type="text" name= "type" id='J' value=" " size="2" onclick="foo(this.id);" />
                           <label for="J"> J </label></td>
                  </tr>
                  <tr>
-                      <td><input type="text" name= "type" id='K' value="K" size="2" onclick="foo(this.id);"/>
+                      <td><input type="text" name= "type" id='K' value=" " size="2" onclick="foo(this.id);"/>
                           <label for="K"> K </label></td>
-                      <td><input type="text" name= "type" id='L' value="L" size="2" onclick="foo(this.id);"/>
+                      <td><input type="text" name= "type" id='L' value=" " size="2" onclick="foo(this.id);"/>
                           <label for="L"> L </label></td>
-                      <td><input type="text" name= "type" id='N' value="N" size="2" onclick="foo(this.id);"/>
+                      <td><input type="text" name= "type" id='N' value=" " size="2" onclick="foo(this.id);"/>
                           <label for="N"> N </label></td>
                  </tr>
                  <tr>
-                      <td><input type="text" name= "type" id='P' value="P" size="2" onclick="foo(this.id);"/>
+                      <td><input type="text" name= "type" id='P' value=" " size="2" onclick="foo(this.id);"/>
                           <label for="P"> P </label></td>
-                      <td><input type="text" name= "type" id='Q' value="Q" size="2" onclick="foo(this.id);"/>
+                      <td><input type="text" name= "type" id='Q' value=" " size="2" onclick="foo(this.id);"/>
                           <label for="Q"> Q </label></td>
-                      <td><input type="text" name= "type" id='R' value="R" size="2" onclick="foo(this.id);"/>
+                      <td><input type="text" name= "type" id='R' value=" " size="2" onclick="foo(this.id);"/>
                           <label for="R"> R </label></td>
                  </tr>
                  <tr>
-                      <td><input type="text" name= "type" id='S'value="S" size="2" onclick="foo(this.id);"/>
+                      <td><input type="text" name= "type" id='S' value=" " size="2" onclick="foo(this.id);"/>
                           <label for="S"> S </label></td>
-                      <td><input type="text" name= "type" id='T'value="T" size="2" onclick="foo(this.id);"/>
+                      <td><input type="text" name= "type" id='T' value=" " size="2" onclick="foo(this.id);"/>
                           <label for="T"> T </label></td>
-                      <td><input type="text" name= "type" id='Y'value="Y" size="2" onclick="foo(this.id);" />
+                      <td><input type="text" name= "type" id='Y' value=" " size="2" onclick="foo(this.id);" />
                           <label for="Y"> Y </label></td>
                  </tr>
                     <input type="button" value="Reset" onclick="reset(); nowe();">
-                    <input type="submit" value="Submit">
-
+                    <input type="submit" name="action" value="Zapisz">
                 </form>
+
             </table>
         </div>
 

@@ -17,14 +17,20 @@ function nowe()
 </script>
 </head>
 <body>
-<form name=form1 action="{{url_for('zadanie1')}}" method="get">
-    <input type="text" name= "type" id='F' value="F" size="2" onclick="foo(this.id);" />
+<form name=form1 action="{{url_for('click')}}" method="post">
+    <input type="text" name= "comment.F" id='F' value="" size="2" onclick="foo(this.id);" />
         <label for="F"> F </label>
-    <input type="text" name= "type" id='H'value="H" size="2" onclick="foo(this.id);" />
+    <input type="text" name= "comment.H" id='H' value="" size="2" onclick="foo(this.id);" />
         <label for="H"> H </label>
-    <input type="text" name= "action" id='J'value="J" size="2" onclick="foo(this.id);" />
+    <input type="text" name= "comment.J" id='J' value="" size="2" onclick="foo(this.id);" />
         <label for="J"> J </label>
     <input type="button" value="Reset" onclick="reset(); nowe();">
+    <input type="submit" name="action" value="Zapisz">
+</form>
+<form action="{{url_for('click')}}"  method="post" >
+    <input id = "number_one" type="text" name="comment.number_one">
+    <input id = "number_two" type="text" name="comment.number_two">
+    <input type="submit" name="action" value="Zapisz">
 </form>
 </body>
 </html>

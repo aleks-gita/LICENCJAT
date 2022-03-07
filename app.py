@@ -21,7 +21,17 @@ def start():
 
 @app.route('/click', methods=['POST', 'GET'])
 def click():
-
+    global zadanie
+    zadanie = Zadanie()
+    if request.method == 'POST':
+        for key in request.form:
+            if key.startswith('comment.'):
+                value = key.partition('.')[-1]
+                index = request.form.get(key, type=int)
+                #index = index - 1
+                print("Value", value)
+                print("INDEX", index)
+                zadanie.lista(index, value)
     return render_template("click.html")
 
 @app.route('/zadanie1', methods=['POST', 'GET'])
@@ -33,8 +43,12 @@ def zadanie1():
         zadanie.czyszczenie()
         x = None
         if request.form['action'] == "Nastepne":
+            zadanie.wyswietl()
             zadanie.wylosuj()
             zadanie.wynik()
+            zadanie.litery_los()
+            #zadanie.wylosuj()
+            #zadanie.wynik()
             #wynik = 1
             #zadanie.sprawdzenie()
             #zadanie.rezultat()
@@ -56,6 +70,9 @@ def zadanie1():
                 x = 1
             else:
                 x = 0
+        if request.args.get('action') == "Zapisz":
+            index=request.args.getlist('type', type=int)
+            print("Indexy",index)
 
 
 
