@@ -139,12 +139,21 @@ class Zadanie:
         del self.litery[x]
         return self.wybrana
 
-
-
     def lista(self, index, value):
         self.lista_uzytkownik = {**self.lista_uzytkownik, **{value: index}}
         #self.lista_uzytkownik.insert(index - 1, value)
         print(self.lista_uzytkownik)
+
+    def litery_sprawdzenie(self):
+        lista_key = list(self.lista_uzytkownik.keys())
+        punkty = 0
+        for x in self.litery_wylosowane:
+            if x in lista_key:
+                print('JEST', self.lista_uzytkownik[x])
+                print(x, self.litery_wylosowane.index(x))
+                if self.lista_uzytkownik[x]  == self.litery_wylosowane.index(x):
+                    punkty += 1
+        print('Punkty',punkty , '/', len(self.litery_wylosowane))
 
 
 

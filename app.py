@@ -71,13 +71,26 @@ def zadanie1():
             else:
                 x = 0
         if request.args.get('action') == "Zapisz":
-            index=request.args.getlist('type', type=int)
-            print("Indexy",index)
-
-
-
+            for key in request.args:
+                if key.startswith('comment.'):
+                    value = key.partition('.')[-1]
+                    index = request.args.get(key, type=int)
+                    if index != None:
+                        index = index - 1
+                    #print("Value", value)
+                    #print("INDEX", index)
+                    zadanie.lista(index, value)
+                    zadanie.litery_sprawdzenie()
 
     return render_template('zadanie1.html',  zadanie=zadanie, wynik=wynik, x=x)
+
+@app.route('/frame', methods=['POST', 'GET'])
+def frame():
+    return render_template('index.html')
+
+@app.route('/spis', methods=['POST', 'GET'])
+def spis():
+    return render_template('spis.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5122', debug=True)

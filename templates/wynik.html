@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wynik</title>
+</head>
+<body>
+
+    <div id="wynik">
+
+             {% for wynik in zadanie.wyswitlane %}
+                <p> {{ wynik }}</p>
+             {% endfor %}
+
+
+            <form action="{{url_for('zadanie1')}}" method="get">
+                    <input type="submit" name="action" value="Prawda" class="button">
+                    <input type="submit" name="action" value="Falsz" class="button">
+            </form>
+
+            {% if x == 1 %}
+                <p>Dobrze!</p>
+            {% elif x == 0  %}
+                 <p>Zle :C</p>
+            {% endif%}
+    </div>
+</body>
+</html>
