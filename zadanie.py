@@ -17,6 +17,7 @@ META_DATA.reflect()
 
 # select kart z tabel
 baza_dzialan = META_DATA.tables['LIC']
+punkty_zad1= META_DATA.tables['Punkty_zad1']
 
 Session = sessionmaker(bind = engine)
 session = Session()
@@ -37,8 +38,15 @@ class Zadanie:
         self.wybrana= None
         self.wyswitlane = 0
         self.rezultat = 0
-        self.wylosuj()
-        self.wynik()
+        self.punkty = 0
+        self.dobrze = 0
+        self.zle =0
+        self.wszystkie_litery = 0
+        self.dobrze_statystyka = 0
+        self.zle_statystyka = 0
+        self.procenty= 0
+        #self.wylosuj()
+        #self.wynik()
 
     def wylosuj(self):
         if len(self.dzialania) == 1:
@@ -103,10 +111,12 @@ class Zadanie:
             x = 1
         if y == x:
             print("Zgadza sie")
-            return "Zgadza sie"
+            self.dobrze += 1
+            self.dobrze_statystyka += 1
         else:
             print("Nie zgadza sie")
-            return "Nie zgadza sie"
+            self.zle += 1
+            self.zle_statystyka += 1
 
         #if self.wyswitlane == wynik_falsz and status == "Falsz":
         #    x = 1
@@ -153,7 +163,23 @@ class Zadanie:
                 print(x, self.litery_wylosowane.index(x))
                 if self.lista_uzytkownik[x]  == self.litery_wylosowane.index(x):
                     punkty += 1
-        print('Punkty',punkty , '/', len(self.litery_wylosowane))
+        self.wszystkie_litery = len(self.litery_wylosowane)
+        self.punkty = punkty
+        print('Punkty',self.punkty , '/', self.wszystkie_litery)
+
+    def czyszczenie_tabela(self):
+        self.litery.extend(self.litery_wylosowane[:])
+        del self.litery_wylosowane[:]
+
+    def wyzerowanie_odp(self):
+        self.dobrze = 0
+        self.zle = 0
+
+    def procent(self):
+        self.procenty= (self.dobrze / (self.dobrze + self.zle)) * 100
+        self.procenty = int(self.procenty)
+
+
 
 
 

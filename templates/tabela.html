@@ -3,12 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Tabela</title>
+    <script type="text/javascript">
+        var x = 0;
+        function foo(clicked_id)
+        {
+            document.getElementById(clicked_id).value = ++x;
+        }
+        function nowe()
+        {
+            x = 0
+        }
+    </script>
 </head>
 <body>
     <div id=checkbox-litery">
         <p>Lista liter:</p>
         <table>
-            <form name=form1 action="{{url_for('zadanie1')}}" method="get">
+            <form name=form1 action="{{url_for('podsumowanie')}}" method="get">
              <tr>
                   <td><input type="text" name= "comment.F" id='F' value=" " size="2" onclick="foo(this.id);" />
                       <label for="F"> F </label></td>

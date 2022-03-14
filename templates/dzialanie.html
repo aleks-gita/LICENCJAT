@@ -9,7 +9,7 @@
                 {% for dzialanie in zadanie.wyswietl() %}
                 <p> {{ dzialanie }} = ?</p>
                 {% endfor %}
-                <form action="{{url_for('zadanie1')}}" method="post">
+                <form action="{{url_for('wynik')}}" method="post">
 		            <input type="submit" name="action" value="Nastepne" class="button">
 	            </form>
         </div>
