@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Klik</title>
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
+    <script type="text/javascript">
+        var lista = []
+        function number(clicked_id)
+        {
+            lista = lista.concat(clicked_id)
+            document.getElementById("pole").value =  lista;
+        }
+        function nowe()
+        {
+            x = 0
+        }
+
+    </script>
+</head>
+<body>
+    <form action="{{url_for('index')}}" method="get">
+            <input type= "submit" name="action" value="Powrot do startu" class="button">
+    </form>
+    <div class="podstrona">
+        <p>Powtórz wyświetlone cyfry od tyłu</p>
+        <div id="buttons">
+
+            <td><input type="button" name="comment.1" id='1' value="1" size="1" onClick="number(this.id);"/></td>
+            <td><input type="button" name="comment.2" id='2' value="2" size="1" onClick="number(this.id);"/></td>
+            <td><input type="button" name="comment.3" id='3' value="3" size="1" onClick="number(this.id);"/></td>
+            <td><input type="button" name="comment.4" id='4' value="4" size="1" onClick="number(this.id);"/></td>
+            <td><input type="button" name="comment.5" id='5' value="5" size="1" onClick="number(this.id);"/></td>
+            <td><input type="button" name="comment.6" id='6' value="6" size="1" onClick="number(this.id);"/></td>
+            <td><input type="button" name="comment.7" id='7' value="7" size="1" onClick="number(this.id);"/></td>
+            <td><input type="button" name="comment.8" id='8' value="8" size="1" onClick="number(this.id);"/></td>
+            <td><input type="button" name="comment.9" id='9' value="9" size="1" onClick="number(this.id);"/></td>
+
+        </div>
+        <br>
+        <div id="form">
+            <form name=form1 action="{{url_for('zadanie3')}}" method="POST">
+                <input type="text" value="" id="pole" name="lista">
+                <input type="submit" name="action" value="Sprawdz">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

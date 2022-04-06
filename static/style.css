@@ -1,0 +1,28 @@
+.podstrona{
+  text-align: center;
+  font-size: 25px;
+  padding-top: 200px;
+}
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: rgb(255, 193, 22);
+  border: 1px solid black;
+  border-radius: 5px;
+  color: black;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+
+}
+input[type=text]{
+   font-size: 25px;
+
+}
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
+  background-color: rgba(255, 193, 22, 0.8);
+  color: black;
+
+}
+#punkty{
+  text-align: left;
+}

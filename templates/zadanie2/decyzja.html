@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
+    <title>Decyzja</title>
+</head>
+<script>
+
+    document.onkeydown = function () {
+        if (window.event.keyCode == '68') {
+            stopClock();
+            submitFormTAK();
+        }
+        if (window.event.keyCode == '77') {
+            stopClock();
+            submitFormNIE();
+
+        }
+    }
+    function submitFormTAK() {
+        document.TAK.submit();
+        document.TAK.method='post';
+    }
+    function submitFormNIE() {
+        document.NIE.submit();
+        document.NIE.method='post';
+    }
+    var startTime = Date.now();
+    var elapsedTime = 0
+
+    var interval = setInterval(function() {
+        elapsedTime = Date.now() - startTime;
+        document.getElementById("timer").innerHTML = (elapsedTime / 1000).toFixed(3);
+
+
+    }, 100);
+
+    function stopClock() {
+        clearInterval(interval);
+        document.getElementById("time_val_tak").value = elapsedTime;
+        document.getElementById("time_val_nie").value = elapsedTime;
+    }
+
+    setTimeout(function(){
+            window.location.href = 'http://wierzba.wzks.uj.edu.pl:5122/plansza';
+         }, 2000);
+
+</script>
+<body>
+    <div class="podstrona">
+    <p> + </p>
+
+    <!--<button onclick="stopClock();">Stop Clock</button>-->
+
+        <form action="" method="post" class="TAK" name="TAK">
+            <input type="hidden" name="action" value="TAK" id="Tak">
+             <input type="hidden" name="czas" id ="time_val_tak" value = "">
+        </form>
+        <form action="" method="post" class="NIE" name="NIE">
+            <input type="hidden" name="action" value="NIE" id="Nie">
+            <input type="hidden" name="czas" id ="time_val_nie" value = "">
+        </form>
+        <form action="" method="post" name="czas"></form>
+    </div>
+
+
+
+
+</body>
+</html>

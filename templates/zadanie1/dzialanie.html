@@ -2,16 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
     <title>Dzialanie</title>
 </head>
 <body>
+    <div class="podstrona">
         <div id="dzialanie">
                 {% for dzialanie in zadanie.wyswietl() %}
                 <p> {{ dzialanie }} = ?</p>
                 {% endfor %}
                 <form action="{{url_for('wynik')}}" method="post">
-		            <input type="submit" name="action" value="Nastepne" class="button">
+		            <input type="submit" name="action" value="Przejdź dalej" class="button">
 	            </form>
         </div>
+    </div>
 </body>
 </html>

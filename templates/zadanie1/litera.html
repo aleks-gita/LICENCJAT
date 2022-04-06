@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
+    <title>Litera</title>
+    <script type="text/javascript">
+
+         setTimeout(function(){
+            window.location.href = 'http://wierzba.wzks.uj.edu.pl:5122/dzialanie';
+         }, 2000);
+
+    </script>
+</head>
+<body>
+    <div class="podstrona">
+        <div class="litera">
+            {% if zadanie.wybrana != None%}
+            <p>{{zadanie.wybrana }}</p>
+            <!--- <p>{{zadanie.litery_wylosowane}}</p> --->
+            {% endif%}
+        </div>
+    </div>
+</body>
+</html>

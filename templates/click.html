@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Click</title>
@@ -14,9 +14,49 @@ function nowe()
             x = 0
 
         }
+document.addEventListener('keydown', function(event) {
+        if (event.keyCode == 37) {
+            alert('Left was pressed');
+
+        }
+        else if (event.keyCode == 39) {
+            alert('Right was pressed');
+        }
+    }, true);
+
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode == 37) {
+        alert('Left was pressed');
+
+    }
+    else if (event.keyCode == 39) {
+        alert('Right was pressed');
+    }
+}, true);
+
+var startTime = Date.now();
+var elapsedTime = 0
+
+var interval = setInterval(function() {
+    elapsedTime = Date.now() - startTime;
+    document.getElementById("timer").innerHTML = (elapsedTime / 1000).toFixed(3);
+
+
+}, 100);
+
+ function stopClock() {
+        clearInterval(interval);
+        document.getElementById("time_val").value = elapsedTime;
+    }
 </script>
 </head>
 <body>
+<script type="text/javascript">
+
+</script>
+
+<input type="text" name="action" value="time_val">
+
 <form name=form1 action="{{url_for('click')}}" method="post">
     <input type="text" name= "comment.F" id='F' value="" size="2" onclick="foo(this.id);" />
         <label for="F"> F </label>
@@ -32,7 +72,37 @@ function nowe()
     <input id = "number_two" type="text" name="comment.number_two">
     <input type="submit" name="action" value="Zapisz">
 </form>
+<script type="text/javascript">
+// Using jQuery.
 
-<iframe src="http://wierzba.wzks.uj.edu.pl:5122/start" style="width:50%;height:250px"></iframe>
+ function foo(clicked_id) {
+     document.getElementById(clicked_id).value = ++x;
+ }
+ var ary = ['kevin', 'mike', 'sally'];
+
+    var offset = 0;
+    _(ary).each(function(person){
+
+      setTimeout(function(){
+        console.log(person);
+      }, 5000 + offset);
+     offset += 5000;
+    });
+</script>
+<form action="{{url_for('click')}}"  method="post" >
+
+
+    <input type="submit" name="action" value="Zapisz">
+</form>
+
+<span id="timer" ></span>
+<button onclick="stopClock();">Stop Clock</button>
+<input type="text" name="action" id ="time_val" value = "">
+
+
+
+
+
+
 </body>
 </html>

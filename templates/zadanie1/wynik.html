@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
     <title>Wynik</title>
 </head>
 <body>
-
-    <div id="wynik">
-
+    <div class="podstrona">
+        <div id="wynik">
              {% for wynik in zadanie.wyswitlane %}
                 <p> {{ wynik }}</p>
              {% endfor %}
@@ -23,6 +23,7 @@
             {% elif x == 0  %}
                  <p>Zle :C</p>
             {% endif%}
+        </div>
     </div>
 </body>
 </html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Podsumowanie</title>
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
+    <script type="text/javascript">
+
+         setTimeout(function(){
+            window.location.href = 'http://wierzba.wzks.uj.edu.pl:5122/nowa';
+         }, 10000);
+
+    </script>
+</head>
+<body>
+    <div class="podstrona">
+        <p>procent: {{zadanie.zle}} / {{zadanie.dobrze}}</p>
+        <p>{{zadanie.procenty}}%</p>
+        <p>Podales prawidłowo {{zadanie.punkty}} litery z {{ zadanie.wszystkie_litery}} </p>
+        <p>Popełniłeś {{zadanie.zle}} blady matematyczne </p>
+    </div>
+
+</body>
+</html>

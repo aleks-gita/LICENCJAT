@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
+    <title>Pokazanie</title>
+<script>
+    /*
+    var list = JSON.parse(" {{ wylosowana }}");
+    var offset = 0;
+    _(list).each(function(person){
+
+    setTimeout(function(){
+       console.log(person);
+      }, 5000 + offset);
+     offset += 5000;
+    });
+    */
+    setTimeout(function(){
+            window.location.href = 'http://wierzba.wzks.uj.edu.pl:5122/zadanie3_klik';
+         }, 1500);
+</script>
+</head>
+<body id="b">
+    <form action="{{url_for('index')}}" method="get">
+            <input type= "submit" name="action" value="Powrot do startu" class="button">
+    </form>
+    <div class="podstrona">
+        {%for x in zadanie3.wylosowana%}
+            <tr>{{x}}</tr>
+        {%endfor%}
+    </div>
+
+</body>
+</html>
