@@ -7,7 +7,7 @@ from random import random
 from random import choice
 from random import randrange
 from random import shuffle
-'''
+
 engine = create_engine('sqlite:///./Lic.db', connect_args={'check_same_thread': False})
 
 META_DATA = MetaData(bind=engine)
@@ -25,7 +25,7 @@ session = Session()
 dzialania_select = baza_dzialan.select()
 c=engine.execute(dzialania_select)
 result= c.fetchall()
-'''
+
 class Zadanie:
     def __init__(self):
         self.litery=['F', 'H', 'J', 'K', 'L', 'N', 'P', 'Q', 'R', 'S', 'T', 'Y']

@@ -13,6 +13,7 @@
           <a href="{{ url_for('login') }}">Login</a>
           {% else %}
           <p>Welcome {{current_user.username}}</p>
+          <p>Welcome {{current_user.id}}</p>
           <a href="{{ url_for('logout') }}">Logout</a>
           {% endif %}
 
@@ -30,6 +31,11 @@
         <div class="button" id="zadanie3">
             <form action="{{url_for('index')}}" method="post">
                 <input type="submit" name="action" value="Zadanie 3" class="button">
+            </form>
+        </div>
+        <div class="button" id="wykresy">
+            <form action="{{url_for('index')}}" method="post">
+                <input type="submit" name="action" value="Wykresy" class="button">
             </form>
         </div>
 

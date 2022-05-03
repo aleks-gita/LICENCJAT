@@ -15,7 +15,7 @@ c = engine.connect()
 META_DATA.reflect()
 
 # select kart z tabel
-baza_dzialan = META_DATA.tables['LIC']
+
 
 Session = sessionmaker(bind = engine)
 session = Session()
@@ -187,3 +187,5 @@ class Zadanie2_class:
         #self.commissions=0
         #self.omissions=0
         #self.correct=0
+    #def wykres(self):
+     #   wyk = session.query(zad2).filter(user_id=current_user.id).all()

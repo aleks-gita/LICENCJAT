@@ -1,4 +1,9 @@
 import json
+import pandas as pd
+import json
+import plotly
+import plotly.express as px
+import plotly.graph_objects as go
 from flask import Flask
 from flask import render_template,request,url_for,redirect,flash
 from markupsafe import Markup
@@ -46,8 +51,10 @@ koniec_licznik = 0
 cos = 0
 
 
+
 @login_manager.user_loader
 def load_user(user_id):
+
     return User.query.get(user_id)
 
 #@app.route('/home')
@@ -112,6 +119,9 @@ def index():
             zadanie3.losowanie()
             cos = zadanie3.wylosowana
             return redirect("/zadanie3")
+        if request.form['action'] == "Wykresy":
+            print("PP",current_user.id)
+            return redirect("/wykres")
     return render_template("start.html")
 
 @app.route('/click', methods=['POST', 'GET'])
@@ -462,6 +472,32 @@ def podsumowanie3():
             db.session.add(zadanie3)
             db.session.commit()
     return render_template('zadanie3/podsumowanie3.html', zadanie3=zadanie3)
+
+@app.route('/wykres')
+def notdash():
+
+    wykres = Zadanie2.query.filter_by(user_id=current_user.id).all()
+    #print(wykres, user_id=current_user.id)
+    wykres_z2= Zadanie2.query.with_entities(Zadanie2.wynik_n_1).all()
+    wykres_n1 = [i.wynik_n_1 for i in wykres]
+    #wykres_nz2 = Zadanie2.query.with_entities(Zadanie2.wynik_n_2).all()
+    wykres_n2 = [i.wynik_n_2 for i in wykres]
+    #wykres_nz3 = Zadanie2.query.with_entities(Zadanie2.wynik_n_3).all()
+    wykres_n3 = [i.wynik_n_3 for i in wykres]
+    date_z= Zadanie2.query.with_entities(Zadanie2.date).all()
+    date= [i.date for i in wykres]
+    #user = User.query.filter_by(email = form.email.data).first()
+    df = pd.DataFrame({
+        'N=1': wykres_n1,
+        'N=2': wykres_n2,
+        'N=3': wykres_n3,
+        #'N=2': [i.wynik_n_2 for i in wykres_z2],
+        #'N=3': [i.wynik_n_3 for i in wykres_z2],
+        'Date': date
+    })
+    fig = go.Figure(data=go.Scatter( x=date, y=wykres_n1,  mode='lines+markers', name='lines+markers', line_shape='spline'))
+    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    return render_template('notdash.html', graphJSON=graphJSON)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5122', debug=True)
