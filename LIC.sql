@@ -27,18 +27,15 @@ SET time_zone = "+00:00";
 -- Struktura tabeli dla tabeli `LIC`
 --
 
-CREATE TABLE `LIC` (
+CREATE TABLE LIC (
   `ID` int(5) NOT NULL,
   `Dzialanie` varchar(50) NOT NULL,
   `Dobry` int(5) NOT NULL,
   `Zly` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
---
--- Zrzut danych tabeli `LIC`
---
 
-INSERT INTO `LIC` (`ID`, `Dzialanie`, `Dobry`, `Zly`) VALUES
+INSERT INTO LIC (`ID`, `Dzialanie`, `Dobry`, `Zly`) VALUES
 (1, '(1*2) + 1', 3, 2),
 (2, '(1/1) - 1', 0, 2),
 (3, '(7*3) - 3', 18, 17),

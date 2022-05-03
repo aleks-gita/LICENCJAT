@@ -7,7 +7,7 @@ from random import random
 from random import choice
 from random import randrange
 from random import shuffle
-
+'''
 engine = create_engine('sqlite:///./Lic.db', connect_args={'check_same_thread': False})
 
 META_DATA = MetaData(bind=engine)
@@ -25,7 +25,7 @@ session = Session()
 dzialania_select = baza_dzialan.select()
 c=engine.execute(dzialania_select)
 result= c.fetchall()
-
+'''
 class Zadanie:
     def __init__(self):
         self.litery=['F', 'H', 'J', 'K', 'L', 'N', 'P', 'Q', 'R', 'S', 'T', 'Y']
@@ -45,9 +45,18 @@ class Zadanie:
         self.dobrze_statystyka = 0
         self.zle_statystyka = 0
         self.procenty= 0
+        self.dlugosc_bloku=0
+        self.punkty_do_statystyki = 0
+        self.wszystkie_do_statystyki =0
         #self.wylosuj()
         #self.wynik()
-
+    def losuj_dlugosc_bloku(self):
+        #lista_dl=[3,4,5,6,7]
+        self.dlugosc_bloku = choice(range(3,7))
+        print("dlugosc_bloku", self.dlugosc_bloku)
+        return self.dlugosc_bloku
+    def pomieszanie(self):
+        shuffle(self.dzialania)
     def wylosuj(self):
         if len(self.dzialania) == 1:
             self.przeladowanie()
@@ -178,6 +187,17 @@ class Zadanie:
     def procent(self):
         self.procenty= (self.dobrze / (self.dobrze + self.zle)) * 100
         self.procenty = int(self.procenty)
+
+    def statystyka(self):
+        if self.punkty == self.wszystkie_litery:
+            self.punkty_do_statystyki += self.punkty
+            self.wszystkie_do_statystyki += self.wszystkie_litery
+        else:
+            self.punkty_do_statystyki += 0
+            self.wszystkie_do_statystyki += self.wszystkie_litery
+        print("Punkty statystyka", self.punkty_do_statystyki)
+
+
 
 
 

@@ -4,20 +4,27 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
     <title>Decyzja</title>
-</head>
-<script>
 
-    document.onkeydown = function () {
+<script>
+     var called = false
+     document.onkeydown = function (){
         if (window.event.keyCode == '68') {
             stopClock();
             submitFormTAK();
+            called = true
         }
         if (window.event.keyCode == '77') {
             stopClock();
             submitFormNIE();
-
+            called = true
         }
+
     }
+    if (!called){
+        setTimeout( function() { submitFormBRAK(); stopClock(); }, 2000);
+
+    }
+
     function submitFormTAK() {
         document.TAK.submit();
         document.TAK.method='post';
@@ -26,30 +33,73 @@
         document.NIE.submit();
         document.NIE.method='post';
     }
+    function submitFormBRAK() {
+        document.BRAK.submit();
+        document.BRAK.method='post';
+    }
+
     var startTime = Date.now();
     var elapsedTime = 0
 
     var interval = setInterval(function() {
         elapsedTime = Date.now() - startTime;
         document.getElementById("timer").innerHTML = (elapsedTime / 1000).toFixed(3);
-
-
     }, 100);
-
     function stopClock() {
         clearInterval(interval);
         document.getElementById("time_val_tak").value = elapsedTime;
         document.getElementById("time_val_nie").value = elapsedTime;
+        document.getElementById("time_val_brak").value = elapsedTime;
     }
-
+    /*
     setTimeout(function(){
             window.location.href = 'http://wierzba.wzks.uj.edu.pl:5122/plansza';
          }, 2000);
-
+    */
 </script>
+    <style>
+        hr {
+            height: 15px;
+            border-radius: 15px;
+            width: 30%;
+        }
+        .green {
+            background-color: green
+         }
+        .red{
+            background-color: red
+        }
+        .black{
+            background-color: black
+        }
+        .white{
+            background-color: white
+        }
+    </style>
+</head>
 <body>
+    <form action="{{url_for('index')}}" method="get">
+            <input type= "submit" name="action" value="Powrot do startu" class="button">
+    </form>
+    <p>{{zadanie2.n}}</p>
+    <p class ='white'>Dobrze:{{zadanie2.punkty}}</p>
+    <p class ='white'>Zle:{{zadanie2.punkty_zle}}</p>
+
     <div class="podstrona">
-    <p> + </p>
+        {%if zadanie2.kolor == None%}
+            <hr class="black"/>
+                <p> +  </p>
+            <hr class="black"/>
+        {%elif zadanie2.kolor == 1%}
+            <hr class="green"/>
+                <p> + </p>
+            <hr class="green"/>
+        {%elif zadanie2.kolor == 0%}
+            <hr class="red"/>
+                <p> +  </p>
+            <hr class="red"/>
+        {%endif%}
+
 
     <!--<button onclick="stopClock();">Stop Clock</button>-->
 
@@ -61,7 +111,13 @@
             <input type="hidden" name="action" value="NIE" id="Nie">
             <input type="hidden" name="czas" id ="time_val_nie" value = "">
         </form>
+        <form action="" method="post" class="BRAK" name="BRAK">
+            <input type="hidden" name="action" value="BRAK" id="Brak">
+            <input type="hidden" name="czas" id ="time_val_brak" value = "">
+        </form>
         <form action="" method="post" name="czas"></form>
+
+
     </div>
 
 

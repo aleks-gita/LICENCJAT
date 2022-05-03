@@ -2,7 +2,7 @@ import ast
 from random import choice
 
 
-class Zadanie3:
+class Zadanie3_class:
     def __init__(self):
         self.list_of_lists = [
             [6, 2, 9],
@@ -19,6 +19,8 @@ class Zadanie3:
             [7, 2, 8, 1, 9, 6, 5, 2]]
         self.dlugosc = 3
         self.wylosowana = None
+        self.bledy = 0
+        self.wynik=0
 
     def losowanie(self):
         listy_aktualne = []
@@ -43,9 +45,11 @@ class Zadanie3:
 
         if dd == backward:
             print("dobrze")
+            self.wynik = self.dlugosc
             self.dlugosc +=1
+
         else:
-            print("zle")
+            self.bledy +=1
 
 
 

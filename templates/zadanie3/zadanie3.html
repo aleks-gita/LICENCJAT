@@ -4,32 +4,42 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
     <title>Pokazanie</title>
-<script>
-    /*
-    var list = JSON.parse(" {{ wylosowana }}");
-    var offset = 0;
-    _(list).each(function(person){
 
-    setTimeout(function(){
-       console.log(person);
-      }, 5000 + offset);
-     offset += 5000;
-    });
-    */
-    setTimeout(function(){
-            window.location.href = 'http://wierzba.wzks.uj.edu.pl:5122/zadanie3_klik';
-         }, 1500);
-</script>
 </head>
-<body id="b">
+<body>
     <form action="{{url_for('index')}}" method="get">
             <input type= "submit" name="action" value="Powrot do startu" class="button">
     </form>
+
+    <div id="changeText" class="podstrona"></div>
     <div class="podstrona">
         {%for x in zadanie3.wylosowana%}
             <tr>{{x}}</tr>
         {%endfor%}
     </div>
+<script type="text/javascript">
+
+
+    var x = {{ cos |tojson }}; //["example1", "example2", "example3"];
+    var len= x.length
+    var counter = 0;
+    var elem = document.getElementById("changeText");
+    var inst = setInterval(change, 500);
+
+    function change() {
+        elem.innerHTML = x[counter];
+        counter++;
+        if (counter >= x.length) {
+            counter = 0;
+            clearInterval(inst); // uncomment this if you want to stop refreshing after one cycle
+        }
+    }
+    setTimeout(function () {
+        window.location.href = 'http://wierzba.wzks.uj.edu.pl:5122/zadanie3_klik';
+    }, 1000 * len);
+
+
+</script>
 
 </body>
 </html>

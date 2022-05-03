@@ -11,9 +11,9 @@
             lista = lista.concat(clicked_id)
             document.getElementById("pole").value =  lista;
         }
-        function nowe()
+        function czysc()
         {
-            x = 0
+            lista=[]
         }
 
     </script>
@@ -42,6 +42,7 @@
             <form name=form1 action="{{url_for('zadanie3')}}" method="POST">
                 <input type="text" value="" id="pole" name="lista">
                 <input type="submit" name="action" value="Sprawdz">
+                <input type="button" value="Reset" onclick="reset(); czysc();">
             </form>
         </div>
     </div>

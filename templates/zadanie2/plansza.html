@@ -11,12 +11,48 @@
          }, 500);
 
     </script>
+    <style>
+        hr {
+            height: 15px;
+            border-radius: 15px;
+            width: 30%;
+        }
+        .green {
+            background-color: green
+         }
+        .red{
+            background-color: red
+        }
+        .black{
+            background-color: black
+        }
+        .white{
+            background-color: white
+        }
+    </style>
 </head>
 <body>
+    <form action="{{url_for('index')}}" method="get">
+            <input type= "submit" name="action" value="Powrot do startu" class="button">
+    </form>
+    <p>{{zadanie2.n}}</p>
+    <p class ='white'>Dobrze:{{zadanie2.punkty}}</p>
+    <p class ='white'>Zle:{{zadanie2.punkty_zle}}</p>
+
     <div class="podstrona">
-
-        <p>{{zadanie2.wylosowana}}</p>
-
+        {%if zadanie2.kolor == None%}
+            <hr class="black"/>
+               <p>{{zadanie2.wylosowana}}</p>
+            <hr class="black"/>
+        {%elif zadanie2.kolor == 1%}
+            <hr class="green"/>
+               <p>{{zadanie2.wylosowana}}</p>
+            <hr class="green"/>
+        {%elif zadanie2.kolor == 0%}
+            <hr class="red"/>
+               <p>{{zadanie2.wylosowana}}</p>
+            <hr class="red"/>
+        {%endif%}
     </div>
 
 </body>

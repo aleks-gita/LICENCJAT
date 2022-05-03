@@ -6,6 +6,17 @@
     <title>Zadanie 1</title>
 </head>
 <body>
+        <div>
+
+          <a href="{{ url_for('index') }}">Home</a>
+          {% if current_user.is_anonymous %}
+          <a href="{{ url_for('login') }}">Login</a>
+          {% else %}
+          <p>Welcome {{current_user.username}}</p>
+          <a href="{{ url_for('logout') }}">Logout</a>
+          {% endif %}
+
+        </div>
         <div class="button" id="zadanie1">
             <form action="{{url_for('index')}}" method="post">
                 <input type="submit" name="action" value="Zadanie 1" class="button">
