@@ -22,9 +22,6 @@ session = Session()
 
 class Zadanie2_class:
     def __init__(self):
-
-
-
         self.omissions = 0
         self.litery = ['A','B','C','D','E','H','I','K','L','M','O','P','R','S','T']
         self.wylosowana = None
@@ -41,9 +38,13 @@ class Zadanie2_class:
         self.omissions = 0
         self.correct = 0
         self.commissions = 0
+        self.commisions_wszystkie =0
+        self.ommisions_wszystkie =0
+        self.correct_wszystkie =0
         self.wynik1 = 0
         self.wynik2 = 0
         self.wynik3 = 0
+        self.wynik_cal =0
 
     def generowanie(self):
         litera_do_n_3=choice(self.litery)
@@ -172,8 +173,11 @@ class Zadanie2_class:
         self.correct=0
 
     def obliczenie_wyniku(self):
+        self.commisions_wszystkie += self.commissions
+        self.ommisions_wszystkie += self.omissions
+        self.correct_wszystkie += self.correct
         if self.correct>0:
-            wynik = (1-((self.commissions+self.omissions)/self.correct))*100
+            wynik = (1-((self.commissions+self.omissions)/25))*100
         else: wynik = 0
         if self.n==1:
             self.wynik1=round(wynik,2)
@@ -184,6 +188,12 @@ class Zadanie2_class:
         elif self.n==3:
             self.wynik3 = round(wynik, 2)
             self.wynik = self.wynik3
+
+    def obliczenie_wyniku_calkowitego(self):
+        if self.correct>0:
+            wynik_cal = (1-((self.commisions_wszystkie+self.ommisions_wszystkie)/25))*100
+            self.wynik_cal=round(wynik_cal,2)
+        else: self.wynik_cal = 0
         #self.commissions=0
         #self.omissions=0
         #self.correct=0

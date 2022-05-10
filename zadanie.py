@@ -48,6 +48,7 @@ class Zadanie:
         self.dlugosc_bloku=0
         self.punkty_do_statystyki = 0
         self.wszystkie_do_statystyki =0
+        self.punkty_nowe=0
         #self.wylosuj()
         #self.wynik()
     def losuj_dlugosc_bloku(self):
@@ -172,8 +173,12 @@ class Zadanie:
                 print(x, self.litery_wylosowane.index(x))
                 if self.lista_uzytkownik[x]  == self.litery_wylosowane.index(x):
                     punkty += 1
+                #if self. lista_uzytkownik[x] == self.litery_wylosowane.index(x):
+                #    self.punkty_nowe += 1
+
         self.wszystkie_litery = len(self.litery_wylosowane)
         self.punkty = punkty
+
         print('Punkty',self.punkty , '/', self.wszystkie_litery)
 
     def czyszczenie_tabela(self):
@@ -189,6 +194,8 @@ class Zadanie:
         self.procenty = int(self.procenty)
 
     def statystyka(self):
+        self.punkty_nowe += self.punkty
+        print("Pkt_nowe", self.punkty_nowe)
         if self.punkty == self.wszystkie_litery:
             self.punkty_do_statystyki += self.punkty
             self.wszystkie_do_statystyki += self.wszystkie_litery

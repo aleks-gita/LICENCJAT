@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/style.css" media="screen"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title>Home</title>
+</head>
+<body id="start_page">
+    <div id="str_p_h1_back">
+    <h1 class="str_p_h1">Pamięć robocza - zestaw ćwiczeń</h1>
+        <!--<hr />-->
+    </div>
+    <div class="images">
+        <img src="../static/brain.png" alt="brain" width="260" height="260" />
+        <img src="../static/light-bulb.png" alt="brain" width="260" height="260" />
+        <img src="../static/settings.png" alt="brain" width="260" height="260" />
+    </div>
+    <div class="buttons_position" >
+      {% if current_user.is_anonymous %}
+        <form action="{{ url_for('login') }}" method="post">
+            <button class="start_buttons" type="submit"> Zaloguj się </button>
+        </form>
+        <form action="{{ url_for('register') }}" method="post">
+            <button class="start_buttons" type="submit"><span class="text"> Załóż konto </span></button>
+        </form>
+      {%endif%}
+  </div>
+
+</body>
+</html>
+

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Ospan</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css" media="screen"/>
+</head>
+<body>
+<form action="{{ url_for('index') }}" method="get">
+    <button class="start_buttons"type="submit"><span class="text"> Strona główna </span></button>
+</form>
+<div>
+    <p>krótki opis</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ligula rutrum, rutrum mauris eget, condimentum sem. Suspendisse potenti.
+        Nam sed risus quis risus placerat tincidunt. Curabitur id bibendum
+        arcu, at feugiat nisl. Vivamus placerat egestas accumsan. Nunc euismod erat purus, ac lobortis orci pharetra id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. </p>
+
+</div>
+<div>
+     <p>Rozpocznij</p>
+     <form action="{{url_for('digit')}}" method="post" id="zadanie3">
+         <button class="start_buttons" type="submit" name="action" value="Zadanie 3"><span> Rozpocznij test </span></button>
+     </form>
+     </p>Wykresy<p>
+     <form action="{{url_for('index')}}" method="post">
+        <button class="start_buttons" type="submit" name="action" value="Wykres Digit Backward" ><span> Zobacz swoje wyniki </span></button>
+     </form>
+</div>
+<div class="iframe-container">
+    <iframe src="http://wierzba.wzks.uj.edu.pl:5122/wykres3" title="wykres3">
+    </iframe>
+</div>
+</body>
+</html>

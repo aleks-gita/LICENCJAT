@@ -1,55 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Zaloguj sie</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css" media="screen"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 </head>
-<body>
+<body id="start_page">
+<div id="str_p_h1_back" >
 
-<h1><a href="{{ url_for('register') }}">Create a new Account!</a></h1>
-<form action="" method="post">
-   {{ form.hidden_tag() }}
-   <div>
-      {{ form.email(placeholder="email",
-      style='width: 50%;
-      font-weight: bold;
-      padding: 12px 20px ;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box') }}
-      {% for error in form.email.errors %}
-      <p>{{ error }}</p>
-      {% endfor %}
-   </div>
-   <br>
-   <div>
-      {{ form.password(placeholder="password",
-      style='width: 50%;
-      font-weight: bold;
-      padding: 12px 20px ;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box') }}
-      {% for error in form.password.errors %}
-      <p>{{ error }}</p>
-      {% endfor %}
-   </div>
-   <p>{{ form.remember() }} {{ form.remember.label }}</p>
-   <p>{{ form.submit(style ='background-color: #4CAF50;
-      color: white;
-      width: 50%;
-      padding: 14px 20px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 4px') }}
-   </p>
-</form>
-{% for message in get_flashed_messages() %}
-<p style="color: red;">Error : {{ message }}</p>
-{% endfor %}
+    <h1 class= "str_p_h1">
+        <a class="str_p_h1" href="http://wierzba.wzks.uj.edu.pl:5122/start_page"> Pamięć robocza - zestaw ćwiczeń</a>
+    </h1>
+        <!--<hr />-->
+</div>
+<div class="form">
+    <h2 id="h2_log">Zaloguj się</h2>
+    <form action="" method="post">
+       {{ form.hidden_tag() }}
+       <div>
+          {{ form.email(placeholder="Email",
+          style='width: 25%;
+          font-size: 15px;
+          padding: 12px 20px ;
+          margin: 8px 0;
+          border: 1px solid black;
+           border-radius: 4px;
+          box-sizing: border-box') }}
+       </div>
+       <br>
+       <div>
+          {{ form.password(placeholder="Haslo",
+          style='width: 25%;
+          font-size: 15px;
+          padding: 12px 20px ;
+          margin: 8px 0;
+          border: 1px solid black;
+          border-radius: 4px;
+          box-sizing: border-box') }}
 
+       </div>
+       {% for message in get_flashed_messages() %}
+       <p style="color: red;">Nieprawidłowe haslo lub email</p>
+       {% endfor %}
+       <p>{{ form.submit(style ='font-size: 16px;
+         font-weight: 200;
+         letter-spacing: 1px;
+         padding: 13px 20px 13px;
+         outline: 0;
+         border: 1px solid black;
+         cursor: pointer;
+         position: relative;
+         background-color: #ffe54c;
+         user-select: none;
+         -webkit-user-select: none;
+         touch-action: manipulation;') }}
+       </p>
+    </form>
+</div>
 
 </body>
 </html>

@@ -3,39 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../static/style.css" media="screen"/>
-    <title>Zadanie 1</title>
+    <title>Start</title>
+    <script>
+
+    </script>
 </head>
 <body>
         <div>
 
-          <a href="{{ url_for('index') }}">Home</a>
-          {% if current_user.is_anonymous %}
-          <a href="{{ url_for('login') }}">Login</a>
-          {% else %}
-          <p>Welcome {{current_user.username}}</p>
-          <p>Welcome {{current_user.id}}</p>
-          <a href="{{ url_for('logout') }}">Logout</a>
-          {% endif %}
+             <form action="{{ url_for('index') }}" method="get">
+             <button class="start_buttons"type="submit"><span class="text"> Strona główna </span></button>
+             </form>
+            {% if current_user.is_anonymous %}
+             <a href="{{ url_for('start_page') }}">Login</a>
+            {% else %}
+             <p>Witaj {{current_user.username}}</p>
+             <form action="{{ url_for('logout') }}" method="get">
+             <button class="start_buttons" id="log_out" type="submit"><span class="text"> Wyloguj się </span></button>
+             </form>
+            {% endif %}
 
         </div>
-        <div class="button" id="zadanie1">
-            <form action="{{url_for('index')}}" method="post">
-                <input type="submit" name="action" value="Zadanie 1" class="button">
-            </form>
-        </div>
-        <div class="button"id="zadanie2">
-            <form action="{{url_for('index')}}" method="post">
-                <input type="submit" name="action" value="Zadanie 2" class="button">
-            </form>
-        </div>
-        <div class="button" id="zadanie3">
-            <form action="{{url_for('index')}}" method="post">
-                <input type="submit" name="action" value="Zadanie 3" class="button">
-            </form>
-        </div>
+        <form action="{{url_for('index')}}" method="post" id="zadanie1">
+                <button class="start_buttons" type="submit" name="action" value="Zadanie 1"><span> OSPAN test </span></button>
+        </form>
+        <form action="{{url_for('index')}}" method="post">
+                <button class="start_buttons" type="submit" name="action" value="Zadanie 2"><span> N-back </span></button>
+        </form>
+        <form action="{{url_for('index')}}" method="post">
+                <button class="start_buttons" type="submit" name="action" value="Zadanie 3"><span> Digit span backward </span></button>
+        </form>
+
         <div class="button" id="wykresy">
             <form action="{{url_for('index')}}" method="post">
-                <input type="submit" name="action" value="Wykresy" class="button">
+                <input type="submit" name="action" value="Wykres OSPAN" class="button">
+            </form>
+             <form action="{{url_for('index')}}" method="post">
+                <input type="submit" name="action" value="Wykres N-back" class="button">
+            </form>
+             <form action="{{url_for('index')}}" method="post">
+                <input type="submit" name="action" value="Wykres Digit Backward" class="button">
             </form>
         </div>
 

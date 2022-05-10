@@ -3,26 +3,207 @@
   font-size: 25px;
   padding-top: 200px;
 }
-input[type=button], input[type=submit], input[type=reset] {
-  background-color: rgb(255, 193, 22);
-  border: 1px solid black;
-  border-radius: 5px;
-  color: black;
-  padding: 16px 32px;
-  text-decoration: none;
-  margin: 4px 2px;
-  cursor: pointer;
 
-}
-input[type=text]{
-   font-size: 25px;
-
-}
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
-  background-color: rgba(255, 193, 22, 0.8);
-  color: black;
-
-}
 #punkty{
   text-align: left;
+}
+
+/*start page*/
+.str_p_h1{
+  text-decoration: none;
+  text-align: center;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 50px;
+  color: #000000;
+}
+.images{
+  padding-top: 20px;
+  text-align: center;
+}
+#str_p_h1_back{
+  background-color: #ffe54c;/*rgb(247, 211, 54) ;*/
+}
+#start_page{
+  background-color: #efebe9;
+}
+.buttons_position{
+  text-align: center;
+  margin: 5px;
+  padding: 5px;
+  padding-top: 50px;
+
+}
+
+.start_buttons {
+  margin: 10px;
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.start_buttons:before {
+  animation: opacityFallbackOut .5s step-end forwards;
+  backface-visibility: hidden;
+  background-color: #fce892;
+  clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: translateZ(0);
+  transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1);
+  width: 100%;
+
+}
+
+.start_buttons:hover:after {
+  top: 0px;
+  left: 0px;
+}
+
+.start_buttons:after {
+  content: "";
+  background-color: #ffe54c;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+@media (min-width: 768px) {
+  .start_buttons {
+    padding: 13px 50px 13px;
+  }
+}
+.start_buttons span {
+  z-index: 1;
+  position: relative;
+}
+.buttons_task{
+  width: 300px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.btn-1,
+.btn-2 {
+  width: 300px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+/* Created by http://grohit.com/  */
+footer a,
+.btn-1 a,
+.btn-2 a {
+  text-decoration: none;
+  border: 2px solid #010100;
+  padding: 15px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+}
+
+span {
+  position: relative;
+  /* z-index coz when we put bg to before and after this span text will not be visible */
+  z-index: 3;
+}
+
+/* Button 1 styles */
+
+.btn-1 a::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: -2px;
+  width: calc(100% + 6px);
+  /*100% plus double the times left values*/
+  height: calc(100% - 10px);
+  background-color: #ffffff;
+  transition: all 0.5s ease-in-out;
+  transform: scaleY(1);
+}
+
+.btn-1 a:hover::before,
+.btn-2 a:hover::before {
+  transform: scaleY(0);
+}
+
+.btn-1 a::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: -5px;
+  width: calc(100% - 10px);
+  /*100% plus double the times left values*/
+  height: calc(100% + 10px);
+  background-color: #ffffff;
+  transition: all 0.5s ease-in-out;
+  transform: scaleX(1);
+}
+/* Created by http://grohit.com/  */
+
+.btn-1 a:hover::after,
+.btn-2 a:hover::after {
+  transform: scaleX(0);
+}
+
+
+#log_out{
+  position: fixed;
+  right: 15px; top: 15px;
+  top: 0;
+}
+.iframe-container {
+  overflow: hidden;
+  /* 16:9 aspect ratio */
+  padding-top: 56.25%;
+  position: relative;
+}
+.iframe-container iframe {
+   border: 0;
+   height: 100%;
+   left: 0;
+   position: absolute;
+   top: 0;
+   width: 100%;
+}
+
+hr {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  color: rgb(247, 211, 54);
+  background-color: rgb(247, 211, 54);
+}
+
+/*login page*/
+#h2_log{
+  text-align: center;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 35px;
+  color: #000000;
+}
+.form{
+  text-align: center;
 }

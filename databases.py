@@ -35,6 +35,7 @@ class Zadanie1(db.Model):
     zle_wyniki = db.Column(db.Integer, index=True)
     litery_max = db.Column(db.Integer, index=True)
     litery_wynik = db.Column(db.Integer, index=True)
+    wynik = db.Column(db.Integer, index=True)
     user_id= db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class Zadanie2(db.Model):
@@ -43,6 +44,7 @@ class Zadanie2(db.Model):
     wynik_n_1=db.Column(db.FLOAT, index = True)
     wynik_n_2=db.Column(db.FLOAT, index = True)
     wynik_n_3=db.Column(db.FLOAT, index = True)
+    wynik_cal=db.Column(db.FLOAT, index = True)
     user_id= db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class Zadanie3(db.Model):
