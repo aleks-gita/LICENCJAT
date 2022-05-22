@@ -4,24 +4,32 @@
     <meta charset="UTF-8">
     <title>Ospan</title>
     <link rel="stylesheet" type="text/css" href="../static/style.css" media="screen"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&&family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../static/image10.png" type="image/icon type">
 </head>
 <body>
 <form action="{{ url_for('index') }}" method="get">
-    <button class="start_buttons"type="submit"><span class="text"> Strona główna </span></button>
+    <button class="logout_button" id="powrot" type="submit"><span class="text"> Powrót do strony głównej </span></button>
 </form>
+<div class="tresc_strony">
+     <div>
+        <h2 class="tytul">OSPAN test</h2>
+        <div class="opis_cwiczen">Na ekranie będą pojawiać się cyklicznie po kolei:
+            <ul>
+                <li>proste działanie matematyczne,</li>
+                <li>wynik,</li>
+                <li>litera.</li>
+            </ul>
+            Twoim zadaniem będzie odpowiedzenie na pytanie, czy wyświetlany wynik jest prawdziwy czy fałszywy oraz zapamiętanie litery, która wyświetli się na ekranie. Po zakończeniu bloku ćwiczeń (od 3 do 7 cykli), zobaczysz planszę, na której będziesz musiał wskazać, w jakiej kolejności pojawiły się litery.
+        </div>
+    </div>
 <div>
-    <p>krótki opis</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ligula rutrum, rutrum mauris eget, condimentum sem. Suspendisse potenti.
-        Nam sed risus quis risus placerat tincidunt. Curabitur id bibendum
-        arcu, at feugiat nisl. Vivamus placerat egestas accumsan. Nunc euismod erat purus, ac lobortis orci pharetra id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. </p>
-
-</div>
-<div>
-     <p>Rozpocznij</p>
      <form action="{{url_for('ospan')}}" method="post" id="zadanie1">
          <button class="start_buttons" type="submit" name="action" value="Zadanie 1"><span> Rozpocznij test </span></button>
      </form>
-     </p>Wykresy<p>
+     <h2 class="tytul">Twoje wyniki</h2>
      <form action="{{url_for('index')}}" method="post">
         <button class="start_buttons" type="submit" name="action" value="Wykres OSPAN" ><span> Zobacz swoje wyniki </span></button>
      </form>

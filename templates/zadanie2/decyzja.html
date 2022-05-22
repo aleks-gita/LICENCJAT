@@ -58,16 +58,16 @@
     */
 </script>
     <style>
-        hr {
+         hr {
             height: 15px;
             border-radius: 15px;
             width: 30%;
         }
         .green {
-            background-color: green
+            background-color: #afb42b
          }
         .red{
-            background-color: red
+            background-color: #e64a19
         }
         .black{
             background-color: black
@@ -75,16 +75,20 @@
         .white{
             background-color: white
         }
+
     </style>
 </head>
 <body>
+    <!---
     <form action="{{url_for('index')}}" method="get">
-            <input type= "submit" name="action" value="Powrot do startu" class="button">
+        <button class="logout_button" id="powrot" type="submit"><span class="text"> Powrót do strony głównej </span></button>
     </form>
+    --->
     <p>{{zadanie2.n}}</p>
-    <p class ='white'>Dobrze:{{zadanie2.punkty}}</p>
-    <p class ='white'>Zle:{{zadanie2.punkty_zle}}</p>
-
+    <div class="circles">
+        <div class="circle-green">Dobrze:{{zadanie2.punkty}}</div>
+        <div class="circle-red">Zle:{{zadanie2.punkty_zle}}</div>
+    </div>
     <div class="podstrona">
         {%if zadanie2.kolor == None%}
             <hr class="black"/>

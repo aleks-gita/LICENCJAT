@@ -1,7 +1,11 @@
+body{
+  background-color: #efebe9;
+}
 .podstrona{
   text-align: center;
   font-size: 25px;
   padding-top: 200px;
+  border: solid 1px;
 }
 
 #punkty{
@@ -15,9 +19,10 @@
   font-family: 'Bebas Neue', cursive;
   font-size: 50px;
   color: #000000;
+
 }
 .images{
-  padding-top: 20px;
+  padding-top: 30px;
   text-align: center;
 }
 #str_p_h1_back{
@@ -35,6 +40,8 @@
 }
 
 .start_buttons {
+  width: 30%;
+  table-layout: fixed;
   margin: 10px;
   font-size: 16px;
   font-weight: 200;
@@ -83,6 +90,7 @@
   transition: 0.2s;
 }
 
+
 @media (min-width: 768px) {
   .start_buttons {
     padding: 13px 50px 13px;
@@ -100,79 +108,47 @@
   align-items: center;
   flex-direction: column;
 }
-.btn-1,
-.btn-2 {
-  width: 300px;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-/* Created by http://grohit.com/  */
-footer a,
-.btn-1 a,
-.btn-2 a {
-  text-decoration: none;
-  border: 2px solid #010100;
-  padding: 15px;
-  color: #000;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  position: relative;
+.button-23 {
+  background-color: #FFFFFF;
+  border: 1px solid #222222;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #222222;
+  cursor: pointer;
   display: inline-block;
-}
-
-span {
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  padding: 13px 23px;
   position: relative;
-  /* z-index coz when we put bg to before and after this span text will not be visible */
-  z-index: 3;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: auto;
 }
 
-/* Button 1 styles */
-
-.btn-1 a::before {
-  content: "";
-  position: absolute;
-  top: 5px;
-  left: -2px;
-  width: calc(100% + 6px);
-  /*100% plus double the times left values*/
-  height: calc(100% - 10px);
-  background-color: #ffffff;
-  transition: all 0.5s ease-in-out;
-  transform: scaleY(1);
+.button-23:focus-visible {
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow .2s;
 }
 
-.btn-1 a:hover::before,
-.btn-2 a:hover::before {
-  transform: scaleY(0);
+.button-23:active {
+  background-color: #F7F7F7;
+  border-color: #000000;
+  transform: scale(.96);
 }
 
-.btn-1 a::after {
-  content: "";
-  position: absolute;
-  left: 5px;
-  top: -5px;
-  width: calc(100% - 10px);
-  /*100% plus double the times left values*/
-  height: calc(100% + 10px);
-  background-color: #ffffff;
-  transition: all 0.5s ease-in-out;
-  transform: scaleX(1);
-}
-/* Created by http://grohit.com/  */
-
-.btn-1 a:hover::after,
-.btn-2 a:hover::after {
-  transform: scaleX(0);
-}
-
-
-#log_out{
-  position: fixed;
-  right: 15px; top: 15px;
-  top: 0;
+.button-23:disabled {
+  border-color: #DDDDDD;
+  color: #DDDDDD;
+  cursor: not-allowed;
+  opacity: 1;
 }
 .iframe-container {
   overflow: hidden;
@@ -183,18 +159,11 @@ span {
 .iframe-container iframe {
    border: 0;
    height: 100%;
+   width: 100%;
    left: 0;
    position: absolute;
    top: 0;
-   width: 100%;
-}
 
-hr {
-  width: 70%;
-  margin-left: auto;
-  margin-right: auto;
-  color: rgb(247, 211, 54);
-  background-color: rgb(247, 211, 54);
 }
 
 /*login page*/
@@ -206,4 +175,158 @@ hr {
 }
 .form{
   text-align: center;
+}
+/*index*/
+#log_out{
+  position: fixed;
+  right: 15px; top: 15px;
+}
+.logout_button{
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+  background-color: #ffe54c;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;')
+}
+.logout_button:hover {
+  opacity: .7;
+}
+
+@media screen and (max-width: 1000px) {
+  .logout_button {
+    /*font-size: 14px;
+    height: 55px;
+    line-height: 55px;
+    width: 150px;*/
+    padding: 13px 50px 13px;
+  }
+}
+#panel{
+  text-align: center;
+}
+.panel_wykresy{
+  text-align: center;
+  padding:30px 50px;
+}
+.tab {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 50px;
+
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  border: 1px solid black;
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+
+  background-color: #ffe54c;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+ background-color: #ffe54c;
+}
+
+/* Style the tab content */
+.tabcontent {
+  background-color: #ebeaea;
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+.tytul{
+  font-family: 'Bebas Neue', cursive;
+  font-size: 30px;
+}
+.tresc_strony{
+  text-align: center;
+  padding: 0px 100px;
+}
+
+.opis_cwiczen{
+  text-align: justify;
+  font-family: 'Quicksand', sans-serif;
+  padding: 0px 20% 30px 20%;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+.buttons{
+  padding-top: 20px;
+}
+.circles {
+  display: flex;
+  right: 15px; top: 15px;
+}
+.circle-red {
+  background: #ff7043;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  text-align: center;
+  margin: 5px 20px;
+  font-size: 15px;
+  padding: 15px;
+  display: flex;
+  height: 80px;
+  width: 80px;
+  font-family: 'Quicksand', sans-serif;
+  color:black;
+}
+.circle-green {
+  background-color: #d4e157;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  text-align: center;
+  margin: 5px 20px;
+  font-size: 15px;
+  padding: 15px;
+  display: flex;
+  height: 80px;
+  width: 80px;
+  font-family: 'Quicksand', sans-serif, bold;
+  color: black;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #ffe54c;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #ffe54c;
+}
+.dzialanie{
+  text-align: center;
+  padding-top:10%;
+  padding-bottom: 30px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 30px;
+  letter-spacing: 1px;
 }

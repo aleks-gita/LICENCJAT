@@ -7,14 +7,14 @@
 </head>
 <body>
     <div class="podstrona">
-        <div id="dzialanie">
+
                 {% for dzialanie in zadanie.wyswietl() %}
-                <p> {{ dzialanie }} = ?</p>
+                <div class="dzialanie"> {{ dzialanie }} = ?</div>
                 {% endfor %}
                 <form action="{{url_for('wynik')}}" method="post">
-		            <input type="submit" name="action" value="Przejdź dalej" class="button">
+                    <button class="button-23" type="submit" name="action" value="Przejdź dalej">Przejdź dalej</button>
 	            </form>
-        </div>
+
     </div>
 </body>
 </html>

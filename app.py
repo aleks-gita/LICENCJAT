@@ -106,7 +106,11 @@ def start_page():
 @app.route('/index', methods=['POST', 'GET'])
 def index():
     global zadanie, zadanie2, zadanie3, cos
+    if current_user.is_anonymous:
+        return redirect("/start_page")
     if request.method == 'POST':
+        if current_user.is_anonymous:
+            return redirect("/start_page")
         if request.form['action'] == "Zadanie 1":
             zadanie = Zadanie()
             #do zadania1 (ospan)
@@ -365,8 +369,8 @@ def koniec():
 
 #ZADANIE 2
 
-@app.route('/nback', methods=['POST', 'GET'])
-def nback():
+@app.route('/instrukcja', methods=['POST', 'GET'])
+def instrukcja():
     global zadanie2
     if request.method == 'POST':
         if request.form['action'] == "Zadanie 2":
@@ -374,6 +378,17 @@ def nback():
             zadanie2.generowanie()
             zadanie2.losowanie()
             return redirect("/plansza")
+    return render_template('zadanie2/instrukcja.html', zadanie2=zadanie2)
+
+@app.route('/nback', methods=['POST', 'GET'])
+def nback():
+    global zadanie2
+    if request.method == 'POST':
+        if request.form['action'] == "Instrukcja":
+            zadanie2 = Zadanie2_class()
+    #        zadanie2.generowanie()
+    #        zadanie2.losowanie()
+            return redirect("/instrukcja")
     return render_template('zadanie2/Nback.html')
 
 @app.route('/plansza', methods=['POST', 'GET'])
@@ -458,7 +473,7 @@ def koniec2():
     if zadanie2 is None:
         return redirect("/index")
     #if request.method == 'POST':
-    return render_template('zadanie2/koniec2.html', zadanie3=zadanie2)
+    return render_template('zadanie2/koniec2.html', zadanie2=zadanie2)
 
 
 #ZADANIE 3
@@ -534,6 +549,7 @@ def wykres_1():
         'Date': date
     })
     fig = go.Figure()
+    fig = px.line(df, x='Date', y='Wyniki', template="simple_white", markers=True)
     fig.add_trace(go.Scatter(x=date, y=wynik, mode='lines+markers', name='Wyniki'))
     #fig.add_trace(go.Scatter(x=date, y=bledy, mode='lines+markers', name='Bledy'))
 
@@ -555,9 +571,10 @@ def wykres_2():
         'N=1': wykres_n1,
         'N=2': wykres_n2,
         'N=3': wykres_n3,
-        'Date': date
+        'Punkty':wykres_cal,
+        'Data': date
     })
-    fig = go.Figure()
+    fig = px.line(df,x='Data', y='Punkty', template="simple_white", markers=True)
     fig.add_trace(go.Scatter( x=date, y=wykres_n1,  mode='lines+markers', name='N=1'))
     fig.add_trace(go.Scatter(x=date, y=wykres_n2, mode='lines+markers', name='N=2'))
     fig.add_trace(go.Scatter(x=date, y=wykres_n3, mode='lines+markers', name='N=3'))
@@ -579,14 +596,14 @@ def wykres_3():
         'Bledy': bledy,
         'Date': date
     })
-    fig = px.line(df,x='Date', y='Wyniki', template="plotly_dark", markers=True)
+    fig = px.line(df,x='Date', y='Wyniki', template="simple_white", markers=True)
     #fig = go.Figure(template="plotly_dark")
     fig.add_trace(go.Scatter(x=date, y=wykres_wynik, mode='lines+markers', name='Wyniki'))
     fig.add_trace(go.Scatter(x=date, y=bledy, mode='lines+markers', name='Bledy'))
 
     fig.update_layout({
-        #'plot_bgcolor': '#cfcfcf',
-        #'paper_bgcolor': '#cfcfcf',
+        #'plot_bgcolor': '#ffe54c',
+        #'paper_bgcolor': '#ffe54c',
     })
 
     graphJSON3 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)

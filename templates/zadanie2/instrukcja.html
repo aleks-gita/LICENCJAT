@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instrukcja</title>
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&&family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../static/image10.png" type="image/icon type">
+</head>
+<body>
+<div class="tresc_strony" style="padding-top: 10%">
+    <p class="tytul" style="font-size: 40px">Jeżeli widzisz tę samą literę co {{zadanie2.n}} wcześniej wciśnij na klawiaturze klawisz <span style="color:#e64a19">D</span></p>
+    <p class="tytul" style="font-size: 40px">Jeżeli uważasz, że nie jest to ta sama litera wciśnij klawisz <span style="color:#e64a19">M</span> </p>
+     <div  class="buttons">
+         <form action="{{url_for('instrukcja')}}" method="post" id="zadanie2">
+             <button class="start_buttons" type="submit" name="action" value="Zadanie 2"><span> Start </span></button>
+         </form>
+    </div>
+</div>
+</body>
+</html>

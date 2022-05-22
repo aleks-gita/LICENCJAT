@@ -1,51 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../static/style.css" media="screen"/>
     <title>Start</title>
-    <script>
+    <link rel="stylesheet" type="text/css" href="../static/style.css" media="screen"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="icon" href="../static/image10.png" type="image/icon type">
 
-    </script>
 </head>
-<body>
-        <div>
+<body id="start_page" onload="document.getElementById('defaultOpen').click();">
+    <div id="str_p_h1_back" >
+        <div style="text-align:center">
+        <a class="str_p_h1" href="http://wierzba.wzks.uj.edu.pl:5122/index"> Pamięć robocza - zestaw ćwiczeń</a>
+        </div>    <!--<hr />-->
+    </div>
+    <div>
+         <p>Witaj {{current_user.username}}</p>
+         <form action="{{ url_for('logout') }}" method="get">
+         <button class="logout_button" id="log_out" type="submit"> Wyloguj się </button>
+         </form>
 
-             <form action="{{ url_for('index') }}" method="get">
-             <button class="start_buttons"type="submit"><span class="text"> Strona główna </span></button>
-             </form>
-            {% if current_user.is_anonymous %}
-             <a href="{{ url_for('start_page') }}">Login</a>
-            {% else %}
-             <p>Witaj {{current_user.username}}</p>
-             <form action="{{ url_for('logout') }}" method="get">
-             <button class="start_buttons" id="log_out" type="submit"><span class="text"> Wyloguj się </span></button>
-             </form>
-            {% endif %}
-
-        </div>
+    </div>
+    <div id="panel">
+        <form action="{{url_for('index')}}" method="post">
+                <button class="start_buttons" type="submit" name="action" value="Zadanie 2"><span> N-back </span></button>
+        </form>
         <form action="{{url_for('index')}}" method="post" id="zadanie1">
                 <button class="start_buttons" type="submit" name="action" value="Zadanie 1"><span> OSPAN test </span></button>
         </form>
         <form action="{{url_for('index')}}" method="post">
-                <button class="start_buttons" type="submit" name="action" value="Zadanie 2"><span> N-back </span></button>
-        </form>
-        <form action="{{url_for('index')}}" method="post">
                 <button class="start_buttons" type="submit" name="action" value="Zadanie 3"><span> Digit span backward </span></button>
         </form>
-
-        <div class="button" id="wykresy">
-            <form action="{{url_for('index')}}" method="post">
-                <input type="submit" name="action" value="Wykres OSPAN" class="button">
-            </form>
-             <form action="{{url_for('index')}}" method="post">
-                <input type="submit" name="action" value="Wykres N-back" class="button">
-            </form>
-             <form action="{{url_for('index')}}" method="post">
-                <input type="submit" name="action" value="Wykres Digit Backward" class="button">
-            </form>
+    </div>
+    <div class="panel_wykresy">
+        <div class="tab">
+            <button type="submit" name="action" value="Wykres OSPAN" class="tablinks active" id="defaultOpen" onclick="openCity(event, 'OSPAN')">OSPAN</button>
+            <button type="submit" name="action" value="Wykres N-back" class="tablinks" onclick="openCity(event, 'N-back')">N-back</button>
+            <button type="submit" name="action" value="Wykres Digit Backward" class="tablinks" onclick="openCity(event, 'Digit backward')">Digit backward</button>
         </div>
-
-
+        <div id="OSPAN" class="tabcontent">
+            <embed type="text/html" src="http://wierzba.wzks.uj.edu.pl:5122/wykres1" width="800" height="500">
+        </div>
+        <div id="N-back" class="tabcontent">
+            <embed type="text/html" src="http://wierzba.wzks.uj.edu.pl:5122/wykres2" width="800" height="500">
+        </div>
+        <div id="Digit backward" class="tabcontent" class="iframe-container">
+            <embed type="text/html" src="http://wierzba.wzks.uj.edu.pl:5122/wykres3" width="800" height="500">
+        </div>
+    </div>
 </body>
+<script>
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    document.getElementById("defaultOpen").click();
+</script>
+
 </html>

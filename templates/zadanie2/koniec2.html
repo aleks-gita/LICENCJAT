@@ -3,17 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Koniec</title>
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&&family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../static/image10.png" type="image/icon type">
 </head>
 <body>
+<form action="{{ url_for('index') }}" method="get">
+    <button class="logout_button" id="powrot" type="submit"><span class="text"> Powrót do strony głównej </span></button>
+</form>
+</form>
+<div class="tresc_strony" style="padding-top: 20%">
+    <h2 class="tytul" style="font-size: 40px">KONIEC</h2>
+    <table>
+        <tr>
+            <th>N=1</th>
+            <th>N=2</th>
+            <th>N=3</th>
+            <th>Suma</th>
+        </tr>
+        <tr>
+            <td>{{zadanie2.wynik1}}</td>
+            <td>{{zadanie2.wynik2}}</td>
+            <td>{{zadanie2.wynik3}}</td>
+            <td>{{zadanie2.wynik_cal}}</td>
+        </tr>
 
-<p>KONIEC</p>
+    </table>
+</div>
 
 
-
-</body>
-</html></title>
-</head>
-<body>
 
 </body>
 </html>

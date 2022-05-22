@@ -3,29 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Nback</title>
-    <link rel="stylesheet" type="text/css" href="../static/style.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&&family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../static/image10.png" type="image/icon type">
 </head>
 <body>
 <form action="{{ url_for('index') }}" method="get">
-    <button class="start_buttons"type="submit"><span class="text"> Strona główna </span></button>
+    <button class="logout_button" id="powrot" type="submit"><span class="text"> Powrót do strony głównej </span></button>
 </form>
-<div>
-    <p>krótki opis</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ligula rutrum, rutrum mauris eget, condimentum sem. Suspendisse potenti.
-        Nam sed risus quis risus placerat tincidunt. Curabitur id bibendum
-        arcu, at feugiat nisl. Vivamus placerat egestas accumsan. Nunc euismod erat purus, ac lobortis orci pharetra id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. </p>
+<div class="tresc_strony">
+    <div>
+        <h2 class="tytul">N-back test</h2>
+        <div class="opis_cwiczen">Na ekranie będą pojawiać się kolejne litery. Twoim zadaniem będzie zdecydowanie czy litera wyświetlona na ekranie,
+            jest tą samą literą co n liter wcześniej. Ćwiczenie rozpoczyna się od n równego 1. Maksymalna wartość n wynosi 3. W zadaniu liczy się czas reakcji. </div>
+    </div>
+    <div  class="buttons">
+         <form action="{{url_for('nback')}}" method="post" id="zadanie2">
+             <button class="start_buttons" type="submit" name="action" value="Instrukcja"><span> Kliknij, aby rozpocząć </span></button>
+         </form>
+         <h2 class="tytul">Twoje wyniki</h2>
+         <form action="{{url_for('index')}}" method="post">
+            <button class="start_buttons" type="submit" name="action" value="Wykres N-back" ><span> Zobacz! </span></button>
+         </form>
+    </div>
 </div>
-<div>
-     <p>Rozpocznij</p>
-     <form action="{{url_for('nback')}}" method="post" id="zadanie2">
-         <button class="start_buttons" type="submit" name="action" value="Zadanie 2"><span> Rozpocznij test </span></button>
-     </form>
-     </p>Wykresy<p>
-     <form action="{{url_for('index')}}" method="post">
-        <button class="start_buttons" type="submit" name="action" value="Wykres N-back" ><span> Zobacz swoje wyniki </span></button>
-     </form>
-</div>
-
 
 </body>
 </html>
