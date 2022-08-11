@@ -1,4 +1,5 @@
-
+import sqlalchemy
+import pandas as pd
 from flask import Flask
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.orm import sessionmaker
@@ -7,8 +8,12 @@ from random import random
 from random import choice
 from random import randrange
 from random import shuffle
+from flask_sqlalchemy import SQLAlchemy
+from databases import LIC
 
-engine = create_engine('sqlite:///./Lic.db', connect_args={'check_same_thread': False})
+app = Flask(__name__)
+
+engine = sqlalchemy.create_engine('sqlite:////home/epi/19_mazur/LICENCJAT/Lic.db', connect_args={'check_same_thread': False})
 
 META_DATA = MetaData(bind=engine)
 
@@ -80,6 +85,7 @@ class Zadanie:
         del self.wywolane[:]
 
     def wyswietl(self):
+        #user = User.query.filter_by(email=form.email.data).first()
         qur = session.query(baza_dzialan).filter(baza_dzialan.c.ID.in_(self.wylosowne)).all()
         dzialania_baza = ([i.Dzialanie for i in qur])
         print("DZIAALNIE", str(dzialania_baza))
@@ -108,6 +114,7 @@ class Zadanie:
 
     def sprawdzenie(self, status):
         qur = session.query(baza_dzialan).filter(baza_dzialan.c.ID.in_(self.wylosowne)).all()
+        #qur = session.query(baza_dzialan).filter(baza_dzialan.c.ID.in_(self.wylosowne)).all()
         wynik_prawda = ([i.Dobry for i in qur])
         wynik_falsz = ([i.Zly for i in qur])
         y = 0

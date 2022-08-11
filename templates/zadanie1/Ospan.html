@@ -16,25 +16,52 @@
 <div class="tresc_strony">
      <div>
         <h2 class="tytul">OSPAN test</h2>
-        <div class="opis_cwiczen">Na ekranie będą pojawiać się cyklicznie po kolei:
+        <div class="opis_cwiczen">
+            <img class="instrukcja" src="https://cdn-icons-png.flaticon.com/512/7305/7305579.png" height="70" width="70">
+            Na ekranie będą pojawiać się cyklicznie po kolei:
             <ul>
                 <li>proste działanie matematyczne,</li>
                 <li>wynik,</li>
                 <li>litera.</li>
             </ul>
-            Twoim zadaniem będzie odpowiedzenie na pytanie, czy wyświetlany wynik jest prawdziwy czy fałszywy oraz zapamiętanie litery, która wyświetli się na ekranie. Po zakończeniu bloku ćwiczeń (od 3 do 7 cykli), zobaczysz planszę, na której będziesz musiał wskazać, w jakiej kolejności pojawiły się litery.
+            <b>Twoim zadaniem będzie odpowiedzenie na pytanie, czy wyświetlany wynik jest prawdziwy
+            czy fałszywy oraz zapamiętanie litery, która wyświetli się potem na ekranie.</b> Po zakończeniu bloku ćwiczeń (od 3 do 7 cykli), zobaczysz planszę, na której będziesz musiał wskazać, w jakiej kolejności pojawiły się litery.
         </div>
     </div>
 <div>
      <form action="{{url_for('ospan')}}" method="post" id="zadanie1">
-         <button class="start_buttons" type="submit" name="action" value="Zadanie 1"><span> Rozpocznij test </span></button>
+         <button class="start_buttons" type="submit" name="action" value="Zadanie 1"><span> Kliknij, aby rozpocząć </span></button>
      </form>
-     <h2 class="tytul">Twoje wyniki</h2>
-     <form action="{{url_for('index')}}" method="post">
-        <button class="start_buttons" type="submit" name="action" value="Wykres OSPAN" ><span> Zobacz swoje wyniki </span></button>
-     </form>
+
+    <h2 class="tytul">Twoje wyniki</h2>
+         <!---<form action="{{url_for('index')}}" method="post">-->
+    <button class="start_buttons" type="button" class="tablinks" onclick="openCity(event, 'OSPAN'), smoothScroll(document.getElementById('second'))"><span> Zobacz! </span></button>
+    </div>
+    <div id="OSPAN" class="tabcontent">
+        <div class="second" id="second">
+            <embed id="embed" type="text/html" src="http://wierzba.wzks.uj.edu.pl:5122/wykres1"  style="width: 1050px; height:600px; margin-left: auto;
+  margin-right: auto;">
+        </div>
 </div>
-
-
+</div>
+<img src="https://cdn.plot.ly/plotly-latest.min.js'">
 </body>
+</html>
+
+<script>
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    document.getElementById("defaultOpen").click();
+</script>
 </html>

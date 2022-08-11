@@ -17,48 +17,51 @@
     </script>
 </head>
 <body>
-
-
-    <div id=checkbox-litery">
-        <p>Lista liter:</p>
-        <table>
+<div class="biale_pole">
+<div class="kwadrat">
+    <div >
+        <p>Zaznacz w jakiej kolejności pojawiły się litery:</p>
+        <table style="margin-left: auto; margin-right: auto;">
             <form name=form1 action="{{url_for('podsumowanie')}}" method="get">
              <tr>
-                  <td><input type="text" name= "comment.F" id='F' value=" " size="2" onclick="foo(this.id);" />
+                  <td><input type="text" name= "comment.F" id='F' value=" " size="1" onclick="foo(this.id);" style="font-size: 18px" />
                       <label for="F"> F </label></td>
-                  <td><input type="text" name= "comment.H" id='H' value=" " size="2" onclick="foo(this.id);" />
+                  <td><input type="text" name= "comment.H" id='H' value=" " size="1" onclick="foo(this.id);" style="font-size: 18px" />
                       <label for="H"> H </label></td>
-                  <td><input type="text" name= "comment.J" id='J' value=" " size="2" onclick="foo(this.id);" />
+                  <td><input type="text" name= "comment.J" id='J' value=" " size="1" onclick="foo(this.id);" style="font-size: 18px"/>
                       <label for="J"> J </label></td>
              </tr>
              <tr>
-                  <td><input type="text" name= "comment.K" id='K' value=" " size="2" onclick="foo(this.id);"/>
+                  <td><input type="text" name= "comment.K" id='K' value=" " size="1" onclick="foo(this.id);" style="font-size: 18px"/>
                       <label for="K"> K </label></td>
-                  <td><input type="text" name= "comment.L" id='L' value=" " size="2" onclick="foo(this.id);"/>
+                  <td><input type="text" name= "comment.L" id='L' value=" " size="1" onclick="foo(this.id);" style="font-size: 18px"/>
                       <label for="L"> L </label></td>
-                  <td><input type="text" name= "comment.N" id='N' value=" " size="2" onclick="foo(this.id);"/>
+                  <td><input type="text" name= "comment.N" id='N' value=" " size="1" onclick="foo(this.id);" style="font-size: 18px"/>
                       <label for="N"> N </label></td>
              </tr>
              <tr>
-                  <td><input type="text" name= "comment.P" id='P' value=" " size="2" onclick="foo(this.id);"/>
+                  <td><input type="text" name= "comment.P" id='P' value=" " size="1" onclick="foo(this.id);" style="font-size: 18px"/>
                       <label for="P"> P </label></td>
-                  <td><input type="text" name= "comment.Q" id='Q' value=" " size="2" onclick="foo(this.id);"/>
+                  <td><input type="text" name= "comment.Q" id='Q' value=" " size="1" onclick="foo(this.id);" style="font-size: 18px"/>
                       <label for="Q"> Q </label></td>
-                  <td><input type="text" name= "comment.R" id='R' value=" " size="2" onclick="foo(this.id);"/>
+                  <td><input type="text" name= "comment.R" id='R' value=" " size="1" onclick="foo(this.id);" style="font-size: 18px"/>
                       <label for="R"> R </label></td>
              </tr>
              <tr>
-                  <td><input type="text" name= "comment.S" id='S' value=" " size="2" onclick="foo(this.id);"/>
+                  <td><input type="text" name= "comment.S" id='S' value=" " size="1" onclick="foo(this.id);" style="font-size: 18px"/>
                       <label for="S"> S </label></td>
-                  <td><input type="text" name= "comment.T" id='T' value=" " size="2" onclick="foo(this.id);"/>
+                  <td><input type="text" name= "comment.T" id='T' value=" " size="1" onclick="foo(this.id);" style="font-size: 18px"/>
                       <label for="T"> T </label></td>
-                  <td><input type="text" name= "comment.Y" id='Y' value=" " size="2" onclick="foo(this.id);" />
+                  <td><input type="text" name= "comment.Y" id='Y' value=" " size="1" onclick="foo(this.id);" style="font-size: 18px"/>
                       <label for="Y"> Y </label></td>
              </tr>
-                <input type="button" value="Reset" onclick="reset(); nowe();">
-                <input type="submit" name="action" value="Zapisz">
+
+                <button  class="button-23" type="button" value="Reset" onclick="reset(); nowe();">Wyczyść</button>
+                <button class="button-23" type="submit" name="action" value="Zapisz">Zapisz</button>
             </form>
         </table>
     </div>
+</div>
+</div>
 </body>
 </html>

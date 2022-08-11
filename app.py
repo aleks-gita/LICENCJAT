@@ -3,14 +3,13 @@ import pandas as pd
 import json
 import plotly
 import plotly.express as px
-
 import plotly.graph_objects as go
 from plotly.graph_objs import *
 import plotly.io as pio
+from IPython.display import Image
 from flask import Flask
 from flask import render_template,request,url_for,redirect,flash
 from markupsafe import Markup
-
 from forms import RegistrationForm, LoginForm
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
@@ -107,10 +106,10 @@ def start_page():
 def index():
     global zadanie, zadanie2, zadanie3, cos
     if current_user.is_anonymous:
-        return redirect("/start_page")
+        return redirect(url_for('start_page'))
     if request.method == 'POST':
         if current_user.is_anonymous:
-            return redirect("/start_page")
+            return redirect(url_for('start_page'))
         if request.form['action'] == "Zadanie 1":
             zadanie = Zadanie()
             #do zadania1 (ospan)
@@ -118,23 +117,23 @@ def index():
             zadanie.pomieszanie()
             zadanie.wylosuj()
             zadanie.wynik()
-            return redirect("/ospan")
+            return redirect(url_for('ospan'))
         if request.form['action'] == "Zadanie 2":
             zadanie2 = Zadanie2_class()
             zadanie2.generowanie()
             zadanie2.losowanie()
-            return redirect("/nback")
+            return redirect(url_for('nback'))
         if request.form['action'] == "Zadanie 3":
             zadanie3 = Zadanie3_class()
             zadanie3.losowanie()
             cos = zadanie3.wylosowana
-            return redirect("/digit")
+            return redirect(url_for("digit"))
         if request.form['action'] == "Wykres OSPAN":
-            return redirect("/wykres1")
+            return redirect(url_for("wykres1"))
         if request.form['action'] == "Wykres N-back":
-            return redirect("/wykres2")
+            return redirect(url_for('wykres2'))
         if request.form['action'] == "Wykres Digit Backward":
-            return redirect("/wykres3")
+            return redirect(url_for("wykres3"))
 
     return render_template("start.html")
 
@@ -157,7 +156,7 @@ def click():
 def zadanie1():
     global zadanie, wynik, x #= Zadanie()
     if zadanie is None:
-        return redirect("/index")
+        return redirect(url_for('start_page'))
     if request.method == 'POST':
         zadanie.czyszczenie()
         x = None
@@ -214,14 +213,14 @@ def ospan():
             zadanie.pomieszanie()
             zadanie.wylosuj()
             zadanie.wynik()
-            return redirect("/dzialanie")
+            return redirect(url_for("dzialanie"))
     return render_template('zadanie1/Ospan.html')
 
 @app.route('/dzialanie', methods=['POST', 'GET'])
 def dzialanie():
     global zadanie, wynik, x #= Zadanie()
     if zadanie is None:
-        return redirect("/index")
+        return redirect(url_for('start_page'))
     if request.method == 'POST':
         zadanie.czyszczenie()
         x = None
@@ -245,14 +244,12 @@ def wynik():
 def litera():
     global zadanie, wynik, x  # = Zadanie()
     if request.method == 'GET':
-
         if request.args.get('action') == "Prawda":
             status = request.args.get('action')
             zadanie.sprawdzenie(status)
             #komunikat = zadanie.sprawdzenie(status)
             #if komunikat == 'Zgadza sie':
             #    x = 1
-
         if request.args.get('action') == "Falsz":
             status = request.args.get('action')
             zadanie.sprawdzenie(status)
@@ -261,15 +258,12 @@ def litera():
              #   x = 1
             #else:
             #    x = 0
-
         if len((zadanie.litery_wylosowane)) == (zadanie.dlugosc_bloku - 1):
-            return redirect('/litera_tabela')
+            return redirect(url_for('litera_tabela'))
         zadanie.litery_los()
         zadanie.czyszczenie()
         zadanie.wylosuj()
         zadanie.wynik()
-
-
     return render_template('zadanie1/litera.html', zadanie=zadanie, wynik=wynik, x=x)
 
 
@@ -283,7 +277,6 @@ def litera_tabela():
             #komunikat = zadanie.sprawdzenie(status)
             #if komunikat == 'Zgadza sie':
             #    x = 1
-
         if request.args.get('action') == "Falsz":
             status = request.args.get('action')
             zadanie.sprawdzenie(status)
@@ -296,21 +289,20 @@ def litera_tabela():
         #zadanie.czyszczenie()
         #zadanie.wylosuj()
         zadanie.wynik()
-
     return render_template('zadanie1/litera_tabela.html', zadanie=zadanie, wynik=wynik, x=x)
 
 @app.route('/tabela', methods=['POST', 'GET'])
 def tabela():
     global zadanie, wynik, x
     if zadanie is None:
-        return redirect("/index")
+        return redirect(url_for('start_page'))
     return render_template('zadanie1/tabela.html', zadanie=zadanie, wynik=wynik, x=x)
 
 @app.route('/podsumowanie', methods=['POST', 'GET'])
 def podsumowanie():
     global zadanie, wynik, x, koniec_licznik
     if zadanie is None:
-        return redirect("/index")
+        return redirect(url_for('start_page'))
     if request.method == 'GET':
         if request.args.get('action') == "Zapisz":
             for key in request.args:
@@ -345,14 +337,14 @@ def nowa():
     global zadanie, wynik, x
     if request.method == 'GET':
         zadanie.wyzerowanie_odp()
-        redirect('/dzialanie')
+        redirect(url_for('dzialanie'))
     return render_template('nowa.html', zadanie=zadanie, wynik=wynik, x=x)
 
 @app.route('/koniec', methods=['POST', 'GET'])
 def koniec():
     global zadanie, wynik, x
     if zadanie is None:
-        return redirect("/index")
+        return redirect(url_for('start_page'))
     if request.method == 'POST':
         if request.form['action'] == "Zobacz podsumowanie":
             wynik_dobry = zadanie.dobrze_statystyka
@@ -365,8 +357,6 @@ def koniec():
             db.session.commit()
     return render_template('zadanie1/koniec.html', zadanie=zadanie, wynik=wynik, x=x)
 
-
-
 #ZADANIE 2
 
 @app.route('/instrukcja', methods=['POST', 'GET'])
@@ -377,7 +367,7 @@ def instrukcja():
             zadanie2 = Zadanie2_class()
             zadanie2.generowanie()
             zadanie2.losowanie()
-            return redirect("/plansza")
+            return redirect(url_for('plansza'))
     return render_template('zadanie2/instrukcja.html', zadanie2=zadanie2)
 
 @app.route('/nback', methods=['POST', 'GET'])
@@ -388,14 +378,14 @@ def nback():
             zadanie2 = Zadanie2_class()
     #        zadanie2.generowanie()
     #        zadanie2.losowanie()
-            return redirect("/instrukcja")
+            return redirect(url_for('instrukcja'))
     return render_template('zadanie2/Nback.html')
 
 @app.route('/plansza', methods=['POST', 'GET'])
 def plansza():
     global zadanie2
     if zadanie2 is None:
-        return redirect("/index")
+        return redirect(url_for('start_page'))
     if request.method == 'POST':
         #zadanie2.generowanie()
         zadanie2.losowanie()
@@ -406,7 +396,7 @@ def plansza():
 def decyzja():
     global zadanie2, decyzja, czas
     if zadanie2 is None:
-        return redirect("/index")
+        return redirect(url_for('start_page'))
     if request.method == 'POST':
         name = request.form['action']
         if name == "TAK" or name == "NIE" or name == "BRAK":
@@ -428,7 +418,7 @@ def decyzja():
                     db.session.add(zadanie2db)
                     db.session.commit()
                     zadanie2.czyszczenie()
-                    return redirect("/koniec2")
+                    return redirect(url_for('koniec2'))
                 #zadanie2.lvl()
                 #zadanie2.generowanie()
                 zadanie2.obliczenie_wyniku()
@@ -445,11 +435,11 @@ def decyzja():
                 zadanie2.liczenie = 0
                 zadanie2.punkty=0
                 zadanie2.punkty_zle=0
-                return redirect("/nowy_lvl")
+                return redirect(url_for('nowy_lvl'))
 
             zadanie2.losowanie()
             print(czas)
-            return redirect('/plansza')
+            return redirect(url_for('plansza'))
         if name == '':
             print('asdadsd')
     return render_template('zadanie2/decyzja.html', zadanie2=zadanie2)
@@ -458,11 +448,10 @@ def decyzja():
 def nowy_lvl():
     global zadanie2
     if zadanie2 is None:
-        return redirect("/index")
+        return redirect(url_for('start_page'))
     if request.method == 'POST':
         #zadanie2.czyszczenie()
         #zadanie2.czyszczenie()
-
         zadanie2.losowanie()
 
     return render_template('zadanie2/nowy_lvl.html', zadanie2=zadanie2)
@@ -471,35 +460,34 @@ def nowy_lvl():
 def koniec2():
     global zadanie2
     if zadanie2 is None:
-        return redirect("/index")
+        return redirect(url_for('start_page'))
     #if request.method == 'POST':
     return render_template('zadanie2/koniec2.html', zadanie2=zadanie2)
-
 
 #ZADANIE 3
 @app.route('/digit', methods=['POST', 'GET'])
 def digit():
-    global zadanie2
+    global zadanie3
     if request.method == 'POST':
         if request.form['action'] == "Zadanie 3":
             zadanie3 = Zadanie3_class()
             zadanie3.losowanie()
             cos = zadanie3.wylosowana
-            return redirect("/zadanie3")
+            return redirect(url_for('zadanie3'))
     return render_template('zadanie3/Digit.html')
 
 @app.route('/zadanie3', methods=['POST', 'GET'])
 def zadanie3():
     global zadanie3, wylosowana, cos
     if zadanie3 is None:
-        return redirect("/index")
+        return redirect(url_for('start_page'))
     if request.method == 'POST':
-        if request.form['action'] == "Sprawdz":
+        if request.form['action'] == "Sprawdź":
             lista = request.form.get('lista')
             print("O", lista)
             zadanie3.sprawdzenie(lista)
             if zadanie3.bledy == 2:
-                return redirect("/koniec3")
+                return redirect(url_for('koniec3'))
             zadanie3.losowanie()
             cos = zadanie3.wylosowana
             #cos = json.dumps(cos)
@@ -510,7 +498,7 @@ def zadanie3():
 def zadanie3_klik():
     global zadanie3, wylosowana
     if zadanie3 is None:
-        return redirect("/index")
+        return redirect(url_for('start_page'))
     if request.method == 'POST':
         wylosowana = json.dumps(zadanie3.wylosowana)
 
@@ -520,7 +508,7 @@ def zadanie3_klik():
 def koniec3():
     global zadanie3
     if zadanie3 is None:
-        return redirect("/index")
+        return redirect(url_for('start_page'))
     #if request.method == 'POST':
     return render_template('zadanie3/koniec3.html', zadanie3=zadanie3)
 
@@ -528,7 +516,7 @@ def koniec3():
 def podsumowanie3():
     global zadanie3, wynik3
     if zadanie3 is None:
-        return redirect("/index")
+        return redirect(url_for('start_page'))
     if request.method == 'POST':
         if request.form['action'] == "Zobacz podsumowanie":
             wynik3 = zadanie3.wynik
@@ -545,14 +533,13 @@ def wykres_1():
     wynik = [i.wynik for i in wykres1]
     date = [i.date for i in wykres1]
     df = pd.DataFrame({
-        'Wyniki': wynik,
-        'Date': date
+        'Punkty': wynik,
+        'Data': date
     })
-    fig = go.Figure()
-    fig = px.line(df, x='Date', y='Wyniki', template="simple_white", markers=True)
+
+    fig = px.line(df,x='Data', y='Punkty', template="plotly_dark", markers=True,  width=1000, height=500)
     fig.add_trace(go.Scatter(x=date, y=wynik, mode='lines+markers', name='Wyniki'))
     #fig.add_trace(go.Scatter(x=date, y=bledy, mode='lines+markers', name='Bledy'))
-
     graphJSON1 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
     return render_template('wykres1.html', graphJSON1=graphJSON1, layout=layout)
@@ -574,12 +561,11 @@ def wykres_2():
         'Punkty':wykres_cal,
         'Data': date
     })
-    fig = px.line(df,x='Data', y='Punkty', template="simple_white", markers=True)
+    fig = px.line(df,x='Data', y='Punkty', template="plotly_dark", markers=True,  width=1000, height=500)
     fig.add_trace(go.Scatter( x=date, y=wykres_n1,  mode='lines+markers', name='N=1'))
     fig.add_trace(go.Scatter(x=date, y=wykres_n2, mode='lines+markers', name='N=2'))
     fig.add_trace(go.Scatter(x=date, y=wykres_n3, mode='lines+markers', name='N=3'))
     fig.add_trace(go.Scatter(x=date, y=wykres_cal, mode='lines+markers', name='Wszystkie'))
-
     graphJSON2 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
     return render_template('wykres2.html', graphJSON2=graphJSON2, layout=layout)
@@ -592,11 +578,11 @@ def wykres_3():
     bledy=[i.bledy for i in wykres3]
     date = [i.date for i in wykres3]
     df = pd.DataFrame({
-        'Wyniki': wykres_wynik,
+        'Punkty': wykres_wynik,
         'Bledy': bledy,
-        'Date': date
+        'Data': date
     })
-    fig = px.line(df,x='Date', y='Wyniki', template="simple_white", markers=True)
+    fig = px.line(df,x='Data', y='Punkty', template="plotly_dark", markers=True,  width=1000, height=500)
     #fig = go.Figure(template="plotly_dark")
     fig.add_trace(go.Scatter(x=date, y=wykres_wynik, mode='lines+markers', name='Wyniki'))
     fig.add_trace(go.Scatter(x=date, y=bledy, mode='lines+markers', name='Bledy'))
@@ -609,5 +595,10 @@ def wykres_3():
     graphJSON3 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
     return render_template('wykres3.html', graphJSON3=graphJSON3, layout=layout)
+
+@app.route('/bibliografia')
+def bibliografia():
+    return render_template('bibliografia.html')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5122', debug=True)

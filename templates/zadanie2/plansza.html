@@ -37,26 +37,32 @@
         <button class="logout_button" id="powrot" type="submit"><span class="text"> Powrót do strony głównej </span></button>
     </form>
     --->
-    <p>{{zadanie2.n}}</p>
-    <div class="circles">
-        <div class="circle-green">Dobrze:{{zadanie2.punkty}}</div>
-        <div class="circle-red">Zle:{{zadanie2.punkty_zle}}</div>
+
+        <div class="circles">
+            <div class="circle-green">Dobrze:{{zadanie2.punkty}}</div>
+            <div class="circle-red">Zle:{{zadanie2.punkty_zle}}</div>
+        </div>
+   <div class="biale_pole">
+    <div class="kwadrat">
+        <div class="dzialanie">
+        <div class="podstrona">
+            {%if zadanie2.kolor == None%}
+                <hr class="black"/>
+                   <p>{{zadanie2.wylosowana}}</p>
+                <hr class="black"/>
+            {%elif zadanie2.kolor == 1%}
+                <hr class="green"/>
+                   <p>{{zadanie2.wylosowana}}</p>
+                <hr class="green"/>
+            {%elif zadanie2.kolor == 0%}
+                <hr class="red"/>
+                   <p>{{zadanie2.wylosowana}}</p>
+                <hr class="red"/>
+            {%endif%}
+        </div>
+        </div>
     </div>
-    <div class="podstrona">
-        {%if zadanie2.kolor == None%}
-            <hr class="black"/>
-               <p>{{zadanie2.wylosowana}}</p>
-            <hr class="black"/>
-        {%elif zadanie2.kolor == 1%}
-            <hr class="green"/>
-               <p>{{zadanie2.wylosowana}}</p>
-            <hr class="green"/>
-        {%elif zadanie2.kolor == 0%}
-            <hr class="red"/>
-               <p>{{zadanie2.wylosowana}}</p>
-            <hr class="red"/>
-        {%endif%}
-    </div>
+   </div>
 
 </body>
 </html>

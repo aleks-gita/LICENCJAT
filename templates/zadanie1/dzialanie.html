@@ -6,15 +6,15 @@
     <title>Dzialanie</title>
 </head>
 <body>
-    <div class="podstrona">
-
-                {% for dzialanie in zadanie.wyswietl() %}
-                <div class="dzialanie"> {{ dzialanie }} = ?</div>
-                {% endfor %}
-                <form action="{{url_for('wynik')}}" method="post">
-                    <button class="button-23" type="submit" name="action" value="Przejdź dalej">Przejdź dalej</button>
-	            </form>
-
+    <div class="biale_pole">
+    <div class="kwadrat">
+        {% for dzialanie in zadanie.wyswietl() %}
+        <div class="dzialanie"> {{ dzialanie }} = ?</div>
+        {% endfor %}
+        <form action="{{url_for('wynik')}}" method="post">
+            <button class="button-23" type="submit" name="action" value="Przejdź dalej">Przejdź dalej</button>
+        </form>
+    </div>
     </div>
 </body>
 </html>

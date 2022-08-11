@@ -7,19 +7,16 @@
 
 </head>
 <body>
-    <form action="{{url_for('index')}}" method="get">
-            <input type= "submit" name="action" value="Powrot do startu" class="button">
+   <form action="{{ url_for('index') }}" method="get">
+        <button class="logout_button" id="powrot" type="submit"><span class="text"> Powrót do strony głównej </span></button>
     </form>
-
-    <div id="changeText" class="podstrona"></div>
-    <div class="podstrona">
-        {%for x in zadanie3.wylosowana%}
-            <tr>{{x}}</tr>
-        {%endfor%}
+    <div class="biale_pole">
+        <div id="changeText" class="kwadrat">
+        <div class="dzialanie">
+        </div>
+        </div>
     </div>
 <script type="text/javascript">
-
-
     var x = {{ cos |tojson }}; //["example1", "example2", "example3"];
     var len= x.length
     var counter = 0;
@@ -37,8 +34,6 @@
     setTimeout(function () {
         window.location.href = 'http://wierzba.wzks.uj.edu.pl:5122/zadanie3_klik';
     }, 1000 * len);
-
-
 </script>
 
 </body>

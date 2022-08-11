@@ -1,29 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
     <title>Wynik</title>
 </head>
 <body>
-    <div class="podstrona">
-        <div id="wynik">
+    <div class="biale_pole">
+    <div class="kwadrat">
+        <div class="dzialanie">
              {% for wynik in zadanie.wyswitlane %}
-                <p> {{ wynik }}</p>
+                {{ wynik }}
              {% endfor %}
-
-
+        </div>
             <form action="{{url_for('litera')}}" method="get">
-                    <input type="submit" name="action" value="Prawda" class="button">
-                    <input type="submit" name="action" value="Falsz" class="button">
+                <button class="button-23" type="submit" name="action" value="Prawda">Prawda</button>
+                <button class="button-23" type="submit" name="action" value="Falsz">Fałsz</button>
             </form>
-
             {% if x == 1 %}
                 <p>Dobrze!</p>
             {% elif x == 0  %}
                  <p>Zle :C</p>
             {% endif%}
-        </div>
+    </div>
     </div>
 </body>
 </html>

@@ -6,7 +6,7 @@ from random import choice
 from random import randrange
 from random import shuffle
 
-
+'''
 engine = create_engine('sqlite:///./Lic.db', connect_args={'check_same_thread': False})
 
 META_DATA = MetaData(bind=engine)
@@ -19,7 +19,7 @@ META_DATA.reflect()
 
 Session = sessionmaker(bind = engine)
 session = Session()
-
+'''
 class Zadanie2_class:
     def __init__(self):
         self.omissions = 0

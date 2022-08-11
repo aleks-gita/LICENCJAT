@@ -1,9 +1,72 @@
-<!doctype html>
-<html>
- <body>
-  <div id='chart' class='chart'”></div>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Ospan</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css" media="screen"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&&family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../static/image10.png" type="image/icon type">
+</head>
+<body>
+<form action="{{ url_for('index') }}" method="get">
+    <button class="logout_button" id="powrot" type="submit"><span class="text"> Powrót do strony głównej </span></button>
+</form>
+<div class="tresc_strony">
+     <div>
+        <h2 class="tytul">OSPAN test</h2>
+        <div class="opis_cwiczen">
+            <img class="instrukcja" src="https://cdn-icons-png.flaticon.com/512/7305/7305579.png" height="70" width="70">
+            Na ekranie będą pojawiać się cyklicznie po kolei:
+            <ul>
+                <li>proste działanie matematyczne,</li>
+                <li>wynik,</li>
+                <li>litera.</li>
+            </ul>
+            <b>Twoim zadaniem będzie odpowiedzenie na pytanie, czy wyświetlany wynik jest prawdziwy
+            czy fałszywy oraz zapamiętanie litery, która wyświetli się potem na ekranie.</b> Po zakończeniu bloku ćwiczeń (od 3 do 7 cykli), zobaczysz planszę, na której będziesz musiał wskazać, w jakiej kolejności pojawiły się litery.
+        </div>
+    </div>
+<div>
+     <form action="{{url_for('ospan')}}" method="post" id="zadanie1">
+         <button class="start_buttons" type="submit" name="action" value="Zadanie 1"><span> Kliknij, aby rozpocząć </span></button>
+     </form>
+
+    <h2 class="tytul">Twoje wyniki</h2>
+         <!---<form action="{{url_for('index')}}" method="post">-->
+    <button class="start_buttons" type="button" class="tablinks" onclick="openCity(event, 'OSPAN'), smoothScroll(document.getElementById('second'))"><span> Zobacz! </span></button>
+    </div>
+    <div id="OSPAN" class="tabcontent">
+        <div class="second" id="second">
+            <div type="text/html"  id='chart' class='chart'></div>
+        </div>
+    </div>
+</div>
 </body><script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 <script type='text/javascript'>
-  var graphs = {{graphJSON1 | safe}};
-  Plotly.plot('chart',graphs,{});
+    var chart ={{graphJSON1 | safe}};
+    var data = chart["data"];
+    var layout = {title: 'OSPAN test'};
+    var config = {responsive: true};
+    Plotly.plot('chart', data, layout, config);
+
+</script>
+<script>
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      document.getElementById(cityName).style.marginLeft = "auto";
+       document.getElementById(cityName).style.marginRight = "auto"
+      evt.currentTarget.className += " active";
+    }
+    document.getElementById("defaultOpen").click();
 </script></html>

@@ -4,26 +4,61 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../static/style.css" media="screen"/>
     <title>Start</title>
-    <link rel="stylesheet" type="text/css" href="../static/style.css" media="screen"/>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500&family=Quicksand&family=Titillium+Web:wght@600&display=swap" rel="stylesheet">
     <link rel="icon" href="../static/image10.png" type="image/icon type">
 
 </head>
-<body id="start_page" onload="document.getElementById('defaultOpen').click();">
+<body id="start_body" onload="document.getElementById('defaultOpen').click();">
     <div id="str_p_h1_back" >
         <div style="text-align:center">
         <a class="str_p_h1" href="http://wierzba.wzks.uj.edu.pl:5122/index"> Pamięć robocza - zestaw ćwiczeń</a>
         </div>    <!--<hr />-->
     </div>
     <div>
-         <p>Witaj {{current_user.username}}</p>
          <form action="{{ url_for('logout') }}" method="get">
          <button class="logout_button" id="log_out" type="submit"> Wyloguj się </button>
          </form>
 
     </div>
+    <div class="tresc_strony">
+        <img src="https://cdn-icons-png.flaticon.com/512/4714/4714873.png"height="100" width="100">
+        <h2 class="tytul">Czym jest pamięć robocza?</h2>
+        <div class="opis_start">Pamięć robocza zwana również pamięcią operacyjną to zbiór procesów, które pozwalają nam na przechowywanie i
+            przetwarzanie tymczasowej informacji i przeprowadzanie skomplikowanych zadań poznawczych. Te zadania to na przykład:  rozumienie języka, czytanie, uczenie się
+            lub rozumowanie. Pamięć robocza jest rodzajem pamięci krótkotrwałej.<a style= "text-decoration:none"href="http://wierzba.wzks.uj.edu.pl:5122/bibliografia">[1]</a> </div>
+
+        <h2 class="tytul">Cechy charakterystyczne pamięci roboczej:</h2>
+        <div class="opis_start">
+
+        <table id="tabela_przezroczysta" style="margin-left:auto;margin-right:auto;">
+		<tr>
+			<td style="padding:10px"><img src="https://cdn-icons-png.flaticon.com/512/4497/4497622.png" height="70" width="70"></td>
+            <td style="text-align: left">Jej wydajność jest ograniczona</td>
+		</tr>
+		<tr>
+			<td style="padding:10px"><img src="https://cdn-icons-png.flaticon.com/512/1832/1832506.png" height="70" width="70"></td>
+            <td>Możemy przechować 5-9 elementów w jednej chwili.</td>
+		</tr>
+        <tr>
+			<td style="padding:10px"><img src="https://cdn-icons-png.flaticon.com/512/4860/4860941.png" height="70" width="70"></td>
+            <td>Jest aktywna. Manipuluje i przekształca informacje.</td>
+		</tr>
+        <tr>
+			<td style="padding:10px"><img src="https://cdn-icons-png.flaticon.com/512/1689/1689164.png" height="70" width="70"></td>
+            <td>Jej zawartość jest stale aktualizowana.<a style= "text-decoration:none"href="http://wierzba.wzks.uj.edu.pl:5122/bibliografia">[1]</a></td>
+		</tr>
+
+	</table>
+
+        </div>
+        <h2 class="tytul">A jaka jest twoja sprawność pamięci roboczej? Sprawdź!</h2>
+
+
     <div id="panel">
         <form action="{{url_for('index')}}" method="post">
                 <button class="start_buttons" type="submit" name="action" value="Zadanie 2"><span> N-back </span></button>
@@ -35,6 +70,7 @@
                 <button class="start_buttons" type="submit" name="action" value="Zadanie 3"><span> Digit span backward </span></button>
         </form>
     </div>
+    <!---
     <div class="panel_wykresy">
         <div class="tab">
             <button type="submit" name="action" value="Wykres OSPAN" class="tablinks active" id="defaultOpen" onclick="openCity(event, 'OSPAN')">OSPAN</button>
@@ -51,6 +87,8 @@
             <embed type="text/html" src="http://wierzba.wzks.uj.edu.pl:5122/wykres3" width="800" height="500">
         </div>
     </div>
+    -->
+ </div>
 </body>
 <script>
     function openCity(evt, cityName) {

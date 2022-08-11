@@ -14,9 +14,9 @@
     </script>
 </head>
 <body>
-    <div class="podstrona">
-        <p>procent: {{zadanie.zle}} / {{zadanie.dobrze}}</p>
-        <p>{{zadanie.procenty}}%</p>
+<div class="biale_pole">
+    <div class="kwadrat">
+        <div class="dzialanie">
         <p>Podałeś prawidłowo {{zadanie.punkty}} litery z {{ zadanie.wszystkie_litery}} </p>
         <p>Popełniłeś {{zadanie.zle}}
         {% if zadanie.zle == 1 %}
@@ -24,18 +24,20 @@
         {% elif zadanie.zle == 0 or zadanie.zle >=5 %}
             błędów matematycznych </p>
         {%else%}
-            błędy matematycznych </p>
+            błędy matematyczne </p>
         {% endif %}
-    </div>
-    <div>
+
         {%if koniec_licznik == 3%}
-        <p>Cwiczenie dobiegło końca</p>
+        <p style="color: #afb42b">Ćwiczenie dobiegło końca</p>
            <form action="{{url_for('koniec')}}" method="post">
-                <input type="submit" name="action" value="Zobacz podsumowanie" class="button">
+               <button class="button-23" type="submit" name="action" value="Zobacz podsumowanie" class="button">Zobacz podsumowanie</button>
            </form>
 
         {%endif%}
+        </div>
     </div>
+</div>
+
 
 </body>
 </html>

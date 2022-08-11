@@ -19,32 +19,36 @@
     </script>
 </head>
 <body>
-    <form action="{{url_for('index')}}" method="get">
-            <input type= "submit" name="action" value="Powrot do startu" class="button">
+    <form action="{{ url_for('index') }}" method="get">
+        <button class="logout_button" id="powrot" type="submit"><span class="text"> Powrót do strony głównej </span></button>
     </form>
-    <div class="podstrona">
+    <div class="biale_pole">
+    <div class="kwadrat">
+        <div class="dzialanie">
         <p>Powtórz wyświetlone cyfry od tyłu</p>
         <div id="buttons">
 
-            <td><input type="button" name="comment.1" id='1' value="1" size="1" onClick="number(this.id);"/></td>
-            <td><input type="button" name="comment.2" id='2' value="2" size="1" onClick="number(this.id);"/></td>
-            <td><input type="button" name="comment.3" id='3' value="3" size="1" onClick="number(this.id);"/></td>
-            <td><input type="button" name="comment.4" id='4' value="4" size="1" onClick="number(this.id);"/></td>
-            <td><input type="button" name="comment.5" id='5' value="5" size="1" onClick="number(this.id);"/></td>
-            <td><input type="button" name="comment.6" id='6' value="6" size="1" onClick="number(this.id);"/></td>
-            <td><input type="button" name="comment.7" id='7' value="7" size="1" onClick="number(this.id);"/></td>
-            <td><input type="button" name="comment.8" id='8' value="8" size="1" onClick="number(this.id);"/></td>
-            <td><input type="button" name="comment.9" id='9' value="9" size="1" onClick="number(this.id);"/></td>
+            <td><input class="button-23" style="background-color: #ffe54c" type="button" name="comment.1" id='1' value="1" size="1" onClick="number(this.id);"/></td>
+            <td><input class="button-23" style="background-color: #ffe54c" type="button" name="comment.2" id='2' value="2" size="1" onClick="number(this.id);"/></td>
+            <td><input class="button-23" style="background-color: #ffe54c" type="button" name="comment.3" id='3' value="3" size="1" onClick="number(this.id);"/></td>
+            <td><input class="button-23" style="background-color: #ffe54c" type="button" name="comment.4" id='4' value="4" size="1" onClick="number(this.id);"/></td>
+            <td><input class="button-23" style="background-color: #ffe54c" type="button" name="comment.5" id='5' value="5" size="1" onClick="number(this.id);"/></td>
+            <td><input class="button-23" style="background-color: #ffe54c" type="button" name="comment.6" id='6' value="6" size="1" onClick="number(this.id);"/></td>
+            <td><input class="button-23" style="background-color: #ffe54c" type="button" name="comment.7" id='7' value="7" size="1" onClick="number(this.id);"/></td>
+            <td><input class="button-23" style="background-color: #ffe54c" type="button" name="comment.8" id='8' value="8" size="1" onClick="number(this.id);"/></td>
+            <td><input class="button-23" style="background-color: #ffe54c" type="button" name="comment.9" id='9' value="9" size="1" onClick="number(this.id);"/></td>
 
         </div>
         <br>
         <div id="form">
             <form name=form1 action="{{url_for('zadanie3')}}" method="POST">
-                <input type="text" value="" id="pole" name="lista">
-                <input type="submit" name="action" value="Sprawdz">
-                <input type="button" value="Reset" onclick="reset(); czysc();">
+                <input class="button-23" type="text" value="" id="pole" name="lista">
+                <input class="button-23" type="submit" name="action" value="Sprawdź">
+                <input  class="button-23"type="button" value="Wyczyść" onclick="reset(); czysc();">
             </form>
         </div>
+    </div>
+    </div>
     </div>
 </body>
 </html>

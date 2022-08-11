@@ -28,6 +28,12 @@ class User(UserMixin, db.Model):
   def check_password(self,password):
       return check_password_hash(self.password_hash,password)
 
+class LIC(db.Model):
+    id= db.Column(db.Integer, primary_key=True)
+    Dzialanie= db.Column(db.VARCHAR, index = True)
+    Dobry = db.Column(db.Integer, index = True)
+    Zly = db.Column(db.Integer, index=True)
+
 class Zadanie1(db.Model):
     id= db.Column(db.Integer, primary_key=True)
     date= db.Column(db.DateTime(), default = datetime.utcnow, index = True)

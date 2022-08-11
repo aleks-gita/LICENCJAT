@@ -8,27 +8,80 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&&family=Quicksand&display=swap" rel="stylesheet">
     <link rel="icon" href="../../static/image10.png" type="image/icon type">
+    <script>
+         window.smoothScroll = function(target) {
+            var scrollContainer = target;
+            do { //find scroll container
+                scrollContainer = scrollContainer.parentNode;
+                if (!scrollContainer) return;
+                scrollContainer.scrollTop += 1;
+            } while (scrollContainer.scrollTop == 0);
+
+            var targetY = 0;
+            do { //find the top of target relatively to the container
+                if (target == scrollContainer) break;
+                targetY += target.offsetTop;
+            } while (target = target.offsetParent);
+
+            scroll = function(c, a, b, i) {
+                i++; if (i > 30) return;
+                c.scrollTop = a + (b - a) / 30 * i;
+                setTimeout(function(){ scroll(c, a, b, i); }, 20);
+            }
+            // start scrolling
+            scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+        }
+    </script>
 </head>
-<body>
+<body onload="document.getElementById('defaultOpen').click();">
 <form action="{{ url_for('index') }}" method="get">
     <button class="logout_button" id="powrot" type="submit"><span class="text"> Powrót do strony głównej </span></button>
 </form>
 <div class="tresc_strony">
     <div>
         <h2 class="tytul">N-back test</h2>
-        <div class="opis_cwiczen">Na ekranie będą pojawiać się kolejne litery. Twoim zadaniem będzie zdecydowanie czy litera wyświetlona na ekranie,
-            jest tą samą literą co n liter wcześniej. Ćwiczenie rozpoczyna się od n równego 1. Maksymalna wartość n wynosi 3. W zadaniu liczy się czas reakcji. </div>
+        <div class="opis_cwiczen">
+            <img class="instrukcja" src="https://cdn-icons-png.flaticon.com/512/7305/7305579.png" height="70" width="70">
+            Na ekranie będą pojawiać się kolejne litery.<br><br>
+            <b> Twoim zadaniem będzie zdecydowanie czy litera, którą zobaczysz,
+            jest tą samą literą, którą widziałeś n liter wcześniej.</b>
+            <br><br> Ćwiczenie rozpoczyna się od n równego 1. Maksymalna wartość n wynosi 3. Potem ćwiczenie kończy się.<a style= "text-decoration:none"href="http://wierzba.wzks.uj.edu.pl:5122/bibliografia">[2]</a>
+        </div>
     </div>
     <div  class="buttons">
          <form action="{{url_for('nback')}}" method="post" id="zadanie2">
              <button class="start_buttons" type="submit" name="action" value="Instrukcja"><span> Kliknij, aby rozpocząć </span></button>
          </form>
          <h2 class="tytul">Twoje wyniki</h2>
-         <form action="{{url_for('index')}}" method="post">
-            <button class="start_buttons" type="submit" name="action" value="Wykres N-back" ><span> Zobacz! </span></button>
-         </form>
+         <!---<form action="{{url_for('index')}}" method="post">-->
+            <button class="start_buttons" type="button" class="tablinks" onclick="openCity(event, 'N-back'), smoothScroll(document.getElementById('second'))"><span> Zobacz! </span></button>
+    </div>
+    <div id="N-back" class="tabcontent">
+        <div class="second" id="second">
+            <embed id="embed" type="text/html" src="http://wierzba.wzks.uj.edu.pl:5122/wykres2"  style="width: 1100px; height: 600px;">
+        </div>
     </div>
 </div>
-
 </body>
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script type='text/javascript'>
+  var graphs = {{graphJSON1 | safe}};
+  Plotly.plot('chart',graphs,{});
+</script>
+<script>
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    document.getElementById("defaultOpen").click();
+</script>
 </html>
