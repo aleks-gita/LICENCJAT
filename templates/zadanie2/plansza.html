@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Plansza</title>
     <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&&family=Quicksand&display=swap" rel="stylesheet">
     <script type="text/javascript">
 
          setTimeout(function(){
@@ -37,11 +38,13 @@
         <button class="logout_button" id="powrot" type="submit"><span class="text"> Powrót do strony głównej </span></button>
     </form>
     --->
-
-        <div class="circles">
-            <div class="circle-green">Dobrze:{{zadanie2.punkty}}</div>
-            <div class="circle-red">Zle:{{zadanie2.punkty_zle}}</div>
-        </div>
+    <form action="http://wierzba.wzks.uj.edu.pl:5122/index" method="get">
+         <input class="logout_button" id="powrot" type="submit" value="Przerwij" onclick="return confirm('Jeżeli teraz wyjdziesz, Twój wynik nie zostanie zapisany. Czy mimo tego chcesz przerwać?')"/>
+    </form>
+    <div class="circles">
+        <div class="circle-green">Dobrze:{{zadanie2.punkty}}</div>
+        <div class="circle-red">Zle:{{zadanie2.punkty_zle}}</div>
+    </div>
    <div class="biale_pole">
     <div class="kwadrat">
         <div class="dzialanie">

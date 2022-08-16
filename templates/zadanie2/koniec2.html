@@ -14,23 +14,12 @@
     <button class="logout_button" id="powrot" type="submit"><span class="text"> Powrót do strony głównej </span></button>
 </form>
 </form>
-<div class="tresc_strony" style="padding-top: 20%">
-    <h2 class="tytul" style="font-size: 40px">KONIEC</h2>
-    <table class="table_koniec">
-        <tr class="tr_koniec">
-            <th class="th_koniec">N=1</th>
-            <th class="th_koniec">N=2</th>
-            <th class="th_koniec">N=3</th>
-            <th class="th_koniec">Suma</th>
-        </tr>
-        <tr class="tr_koniec">
-            <td class="td_koniec">{{zadanie2.wynik1}}</td>
-            <td class="td_koniec">{{zadanie2.wynik2}}</td>
-            <td class="td_koniec">{{zadanie2.wynik3}}</td>
-            <td class="td_koniec">{{zadanie2.wynik_cal}}</td>
-        </tr>
-
-    </table>
+<div class="koniec">
+    <h2 class="tytul" >KONIEC</h2>
+    <p> N=1: {{zadanie2.wynik1}}</p>
+    <p> N=2: {{zadanie2.wynik2}}</p>
+    <p> N=3: {{zadanie2.wynik3}}</p>
+    <p>Suma: {{zadanie2.wynik_cal}}</p>
 </div>
 
 

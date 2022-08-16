@@ -152,57 +152,7 @@ def click():
                 zadanie.lista(index, value)
     return render_template("click.html")
 
-@app.route('/zadanie1', methods=['POST', 'GET'])
-def zadanie1():
-    global zadanie, wynik, x #= Zadanie()
-    if zadanie is None:
-        return redirect(url_for('start_page'))
-    if request.method == 'POST':
-        zadanie.czyszczenie()
-        x = None
-        '''if request.form['action'] == "Nastepne":
-            zadanie.wyswietl()
-            zadanie.wylosuj()
-            zadanie.wynik()
-            zadanie.litery_los() '''
-            #zadanie.wylosuj()
-            #zadanie.wynik()
-            #wynik = 1
-            #zadanie.sprawdzenie()
-            #zadanie.rezultat()
-        #print("SPR", zadanie.sprawdzenie())
-
-    if request.method == 'GET':
-        if request.args.get('action') == "Prawda":
-            status = request.args.get('action')
-            zadanie.sprawdzenie(status)
-            komunikat = zadanie.sprawdzenie(status)
-            if komunikat == 'Zgadza sie':
-                x = 1
-
-        if request.args.get('action') == "Falsz":
-            status = request.args.get('action')
-            zadanie.sprawdzenie(status)
-            komunikat = zadanie.sprawdzenie(status)
-            if komunikat == 'Zgadza sie':
-                x = 1
-            else:
-                x = 0
-        if request.args.get('action') == "Zapisz":
-            for key in request.args:
-                if key.startswith('comment.'):
-                    value = key.partition('.')[-1]
-                    index = request.args.get(key, type=int)
-                    if index != None:
-                        index = index - 1
-                    #print("Value", value)
-                    #print("INDEX", index)
-                    zadanie.lista(index, value)
-                    zadanie.litery_sprawdzenie()
-
-    return render_template('zadanie1/zadanie1.html', zadanie=zadanie, wynik=wynik, x=x)
-
-@app.route('/ospan', methods=['POST', 'GET'])
+@app.route('/ospan',  methods=['POST', 'GET'])
 def ospan():
     global zadanie
     if request.method == 'POST':
@@ -214,7 +164,34 @@ def ospan():
             zadanie.wylosuj()
             zadanie.wynik()
             return redirect(url_for("dzialanie"))
-    return render_template('zadanie1/Ospan.html')
+
+    wykres1 = Zadanie1.query.filter_by(user_id=current_user.id).all()
+    wynik = [i.wynik for i in wykres1]
+    date = [i.date for i in wykres1]
+    df = pd.DataFrame({
+        'Punkty': wynik,
+        'Data': date
+    })
+
+    fig = px.line(df,x='Data', y='Punkty', template="plotly_dark", markers=True,  width=1000, height=500)
+    fig.add_trace(go.Scatter(x=date, y=wynik, mode='lines+markers', name='Wyniki'))
+    #fig.add_trace(go.Scatter(x=date, y=bledy, mode='lines+markers', name='Bledy'))
+    graphJSON1 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+
+    return render_template('zadanie1/Ospan.html', graphJSON1=graphJSON1, layout=layout)
+@app.route('/ospan2', methods=['POST', 'GET'])
+def ospan2():
+    global zadanie
+    if request.method == 'POST':
+        if request.form['action'] == "Zadanie 1":
+            zadanie = Zadanie()
+            # do zadania1 (ospan)
+            zadanie.losuj_dlugosc_bloku()
+            zadanie.pomieszanie()
+            zadanie.wylosuj()
+            zadanie.wynik()
+            return redirect(url_for("dzialanie"))
+    return render_template('zadanie1/Ospan2.html')
 
 @app.route('/dzialanie', methods=['POST', 'GET'])
 def dzialanie():
@@ -376,10 +353,44 @@ def nback():
     if request.method == 'POST':
         if request.form['action'] == "Instrukcja":
             zadanie2 = Zadanie2_class()
+            #        zadanie2.generowanie()
+            #        zadanie2.losowanie()
+            return redirect(url_for('instrukcja'))
+    wykres2 = Zadanie2.query.filter_by(user_id=current_user.id).all()
+    wykres_z2= Zadanie2.query.with_entities(Zadanie2.wynik_n_1).all()
+    wykres_n1 = [i.wynik_n_1 for i in wykres2]
+    wykres_n2 = [i.wynik_n_2 for i in wykres2]
+    wykres_n3 = [i.wynik_n_3 for i in wykres2]
+    wykres_cal = [i.wynik_cal for i in wykres2]
+    date= [i.date for i in wykres2]
+
+    df = pd.DataFrame({
+        'N=1': wykres_n1,
+        'N=2': wykres_n2,
+        'N=3': wykres_n3,
+        'Punkty':wykres_cal,
+        'Data': date
+    })
+    fig = px.line(df,x='Data', y='Punkty', template="plotly_dark", markers=True,  width=1000, height=500)
+    fig.add_trace(go.Scatter( x=date, y=wykres_n1,  mode='lines+markers', name='N=1'))
+    fig.add_trace(go.Scatter(x=date, y=wykres_n2, mode='lines+markers', name='N=2'))
+    fig.add_trace(go.Scatter(x=date, y=wykres_n3, mode='lines+markers', name='N=3'))
+    fig.add_trace(go.Scatter(x=date, y=wykres_cal, mode='lines+markers', name='Wszystkie'))
+
+    graphJSON2 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+
+    return render_template('zadanie2/Nback.html', graphJSON2=graphJSON2, layout=layout)
+
+@app.route('/nback2', methods=['POST', 'GET'])
+def nback2():
+    global zadanie2
+    if request.method == 'POST':
+        if request.form['action'] == "Instrukcja":
+            zadanie2 = Zadanie2_class()
     #        zadanie2.generowanie()
     #        zadanie2.losowanie()
             return redirect(url_for('instrukcja'))
-    return render_template('zadanie2/Nback.html')
+    return render_template('zadanie2/Nback2.html')
 
 @app.route('/plansza', methods=['POST', 'GET'])
 def plansza():
@@ -467,6 +478,7 @@ def koniec2():
 #ZADANIE 3
 @app.route('/digit', methods=['POST', 'GET'])
 def digit():
+    pio.templates
     global zadanie3
     if request.method == 'POST':
         if request.form['action'] == "Zadanie 3":
@@ -474,7 +486,38 @@ def digit():
             zadanie3.losowanie()
             cos = zadanie3.wylosowana
             return redirect(url_for('zadanie3'))
-    return render_template('zadanie3/Digit.html')
+    wykres3 = Zadanie3.query.filter_by(user_id=current_user.id).all()
+    wykres_wynik = [i.wynik for i in wykres3]
+    bledy = [i.bledy for i in wykres3]
+    date = [i.date for i in wykres3]
+    df = pd.DataFrame({
+        'Punkty': wykres_wynik,
+        'Bledy': bledy,
+        'Data': date
+    })
+    fig = px.line(df, x='Data', y='Punkty', template="plotly_dark", markers=True, width=1000, height=500)
+    # fig = go.Figure(template="plotly_dark")
+    fig.add_trace(go.Scatter(x=date, y=wykres_wynik, mode='lines+markers', name='Wyniki'))
+    fig.add_trace(go.Scatter(x=date, y=bledy, mode='lines+markers', name='Bledy'))
+
+    fig.update_layout({
+        # 'plot_bgcolor': '#ffe54c',
+        # 'paper_bgcolor': '#ffe54c',
+    })
+    graphJSON3 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+
+    return render_template('zadanie3/Digit.html', graphJSON3=graphJSON3, layout=layout)
+
+@app.route('/digit2', methods=['POST', 'GET'])
+def digit2():
+    global zadanie3
+    if request.method == 'POST':
+        if request.form['action'] == "Zadanie 3":
+            zadanie3 = Zadanie3_class()
+            zadanie3.losowanie()
+            cos = zadanie3.wylosowana
+            return redirect(url_for('zadanie3'))
+    return render_template('zadanie3/Digit2.html')
 
 @app.route('/zadanie3', methods=['POST', 'GET'])
 def zadanie3():
@@ -509,6 +552,13 @@ def koniec3():
     global zadanie3
     if zadanie3 is None:
         return redirect(url_for('start_page'))
+    if zadanie3.bledy == 2:
+        wynik3 = zadanie3.wynik
+        bledy = zadanie3.bledy
+        max = 8
+        zadanie3 = Zadanie3(wynik=wynik3, max=max, bledy=bledy, user_id=current_user.id)
+        db.session.add(zadanie3)
+        db.session.commit()
     #if request.method == 'POST':
     return render_template('zadanie3/koniec3.html', zadanie3=zadanie3)
 
@@ -518,7 +568,7 @@ def podsumowanie3():
     if zadanie3 is None:
         return redirect(url_for('start_page'))
     if request.method == 'POST':
-        if request.form['action'] == "Zobacz podsumowanie":
+        if zadanie3.bledy == 2:
             wynik3 = zadanie3.wynik
             bledy= zadanie3.bledy
             max = 8
@@ -527,74 +577,7 @@ def podsumowanie3():
             db.session.commit()
     return render_template('zadanie3/podsumowanie3.html', zadanie3=zadanie3)
 
-@app.route('/wykres1')
-def wykres_1():
-    wykres1 = Zadanie1.query.filter_by(user_id=current_user.id).all()
-    wynik = [i.wynik for i in wykres1]
-    date = [i.date for i in wykres1]
-    df = pd.DataFrame({
-        'Punkty': wynik,
-        'Data': date
-    })
 
-    fig = px.line(df,x='Data', y='Punkty', template="plotly_dark", markers=True,  width=1000, height=500)
-    fig.add_trace(go.Scatter(x=date, y=wynik, mode='lines+markers', name='Wyniki'))
-    #fig.add_trace(go.Scatter(x=date, y=bledy, mode='lines+markers', name='Bledy'))
-    graphJSON1 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-
-    return render_template('wykres1.html', graphJSON1=graphJSON1, layout=layout)
-
-@app.route('/wykres2')
-def wykres_2():
-    wykres2 = Zadanie2.query.filter_by(user_id=current_user.id).all()
-    wykres_z2= Zadanie2.query.with_entities(Zadanie2.wynik_n_1).all()
-    wykres_n1 = [i.wynik_n_1 for i in wykres2]
-    wykres_n2 = [i.wynik_n_2 for i in wykres2]
-    wykres_n3 = [i.wynik_n_3 for i in wykres2]
-    wykres_cal = [i.wynik_cal for i in wykres2]
-    date= [i.date for i in wykres2]
-
-    df = pd.DataFrame({
-        'N=1': wykres_n1,
-        'N=2': wykres_n2,
-        'N=3': wykres_n3,
-        'Punkty':wykres_cal,
-        'Data': date
-    })
-    fig = px.line(df,x='Data', y='Punkty', template="plotly_dark", markers=True,  width=1000, height=500)
-    fig.add_trace(go.Scatter( x=date, y=wykres_n1,  mode='lines+markers', name='N=1'))
-    fig.add_trace(go.Scatter(x=date, y=wykres_n2, mode='lines+markers', name='N=2'))
-    fig.add_trace(go.Scatter(x=date, y=wykres_n3, mode='lines+markers', name='N=3'))
-    fig.add_trace(go.Scatter(x=date, y=wykres_cal, mode='lines+markers', name='Wszystkie'))
-    graphJSON2 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-
-    return render_template('wykres2.html', graphJSON2=graphJSON2, layout=layout)
-
-@app.route('/wykres3')
-def wykres_3():
-    pio.templates
-    wykres3 = Zadanie3.query.filter_by(user_id=current_user.id).all()
-    wykres_wynik = [i.wynik for i in wykres3]
-    bledy=[i.bledy for i in wykres3]
-    date = [i.date for i in wykres3]
-    df = pd.DataFrame({
-        'Punkty': wykres_wynik,
-        'Bledy': bledy,
-        'Data': date
-    })
-    fig = px.line(df,x='Data', y='Punkty', template="plotly_dark", markers=True,  width=1000, height=500)
-    #fig = go.Figure(template="plotly_dark")
-    fig.add_trace(go.Scatter(x=date, y=wykres_wynik, mode='lines+markers', name='Wyniki'))
-    fig.add_trace(go.Scatter(x=date, y=bledy, mode='lines+markers', name='Bledy'))
-
-    fig.update_layout({
-        #'plot_bgcolor': '#ffe54c',
-        #'paper_bgcolor': '#ffe54c',
-    })
-
-    graphJSON3 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-
-    return render_template('wykres3.html', graphJSON3=graphJSON3, layout=layout)
 
 @app.route('/bibliografia')
 def bibliografia():

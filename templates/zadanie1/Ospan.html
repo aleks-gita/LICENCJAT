@@ -3,13 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Ospan</title>
-    <link rel="stylesheet" type="text/css" href="../static/style.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&&family=Quicksand&display=swap" rel="stylesheet">
     <link rel="icon" href="../../static/image10.png" type="image/icon type">
 </head>
-<body>
+    <script>
+         window.smoothScroll = function(target) {
+            var scrollContainer = target;
+            do { //find scroll container
+                scrollContainer = scrollContainer.parentNode;
+                if (!scrollContainer) return;
+                scrollContainer.scrollTop += 1;
+            } while (scrollContainer.scrollTop == 0);
+
+            var targetY = 0;
+            do { //find the top of target relatively to the container
+                if (target == scrollContainer) break;
+                targetY += target.offsetTop;
+            } while (target = target.offsetParent);
+
+            scroll = function(c, a, b, i) {
+                i++; if (i > 30) return;
+                c.scrollTop = a + (b - a) / 30 * i;
+                setTimeout(function(){ scroll(c, a, b, i); }, 20);
+            }
+            // start scrolling
+            scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+        }
+    </script>
+<body onload="document.getElementById('defaultOpen').click();">
 <form action="{{ url_for('index') }}" method="get">
     <button class="logout_button" id="powrot" type="submit"><span class="text"> Powrót do strony głównej </span></button>
 </form>
@@ -28,7 +52,7 @@
             czy fałszywy oraz zapamiętanie litery, która wyświetli się potem na ekranie.</b> Po zakończeniu bloku ćwiczeń (od 3 do 7 cykli), zobaczysz planszę, na której będziesz musiał wskazać, w jakiej kolejności pojawiły się litery.
         </div>
     </div>
-<div>
+
      <form action="{{url_for('ospan')}}" method="post" id="zadanie1">
          <button class="start_buttons" type="submit" name="action" value="Zadanie 1"><span> Kliknij, aby rozpocząć </span></button>
      </form>
@@ -36,18 +60,22 @@
     <h2 class="tytul">Twoje wyniki</h2>
          <!---<form action="{{url_for('index')}}" method="post">-->
     <button class="start_buttons" type="button" class="tablinks" onclick="openCity(event, 'OSPAN'), smoothScroll(document.getElementById('second'))"><span> Zobacz! </span></button>
-    </div>
     <div id="OSPAN" class="tabcontent">
         <div class="second" id="second">
-            <embed id="embed" type="text/html" src="http://wierzba.wzks.uj.edu.pl:5122/wykres1"  style="width: 1050px; height:600px; margin-left: auto;
-  margin-right: auto;">
+            <div type="text/html"  id='chart' class='chart'></div>
         </div>
+    </div>
 </div>
-</div>
-<img src="https://cdn.plot.ly/plotly-latest.min.js'">
 </body>
-</html>
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script type='text/javascript'>
+    var chart ={{graphJSON1 | safe}};
+    var data = chart["data"];
+    var layout = {title: 'OSPAN test'};
+    var config = {responsive: true};
+    Plotly.plot('chart', data, layout, config);
 
+</script>
 <script>
     function openCity(evt, cityName) {
       var i, tabcontent, tablinks;
@@ -60,8 +88,9 @@
         tablinks[i].className = tablinks[i].className.replace(" active", "");
       }
       document.getElementById(cityName).style.display = "block";
+      document.getElementById(cityName).style.marginLeft = "auto";
+       document.getElementById(cityName).style.marginRight = "auto"
       evt.currentTarget.className += " active";
     }
     document.getElementById("defaultOpen").click();
-</script>
-</html>
+</script></html>

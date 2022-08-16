@@ -14,25 +14,13 @@
     <button class="logout_button" id="powrot" type="submit"><span class="text"> Powrót do strony głównej </span></button>
 </form>
 </form>
- <div class="biale_pole">
-    <div class="kwadrat">
-        <div class="dzialanie">
-        <table id="tabela_przezroczysta" style="margin-left:auto;margin-right:auto;">
-            <tr>
-                <td style="text-align: left"><img src="https://cdn-icons-png.flaticon.com/512/5219/5219213.png" height="60" width="60">
-                 Dobre odpowiedzi: {{zadanie.dobrze_statystyka}}</td>
-		    </tr>
-            <tr>
-            <td style="text-align: left"><img src="https://cdn-icons-png.flaticon.com/512/7016/7016668.png" height="60" width="60">
-                Złe odpowiedzi: {{zadanie.zle_statystyka}}</td>
-		    </tr>
-            <tr>
-            <td style="text-align: left"><img src="https://cdn-icons.flaticon.com/png/512/2065/premium/2065169.png?token=exp=1659890508~hmac=0eb8451a5313b17659ead34be3039bdb" height="60" width="60">
-                Uzyskany wynik: {{zadanie.punkty_nowe}}</td>
-		    </tr>
-        </table>
+        <div class="koniec">
+            <h2 class="tytul" style="font-size: 40px">KONIEC</h2>
+                <p>Dobre odpowiedzi: {{zadanie.dobrze_statystyka}}</p>
+                <p>Złe odpowiedzi: {{zadanie.zle_statystyka}}</p>
+                <p>Uzyskany wynik: {{zadanie.punkty_nowe}}</p>
         </div>
-    </div>
-</div>
+
+
 </body>
 </html>

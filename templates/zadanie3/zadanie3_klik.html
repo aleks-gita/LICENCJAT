@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Klik</title>
     <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&&family=Quicksand&display=swap" rel="stylesheet">
     <script type="text/javascript">
         var lista = []
         function number(clicked_id)
@@ -20,7 +21,7 @@
 </head>
 <body>
     <form action="{{ url_for('index') }}" method="get">
-        <button class="logout_button" id="powrot" type="submit"><span class="text"> Powrót do strony głównej </span></button>
+         <input class="logout_button" id="powrot" type="submit" value="Przerwij" onclick="return confirm('Jeżeli teraz wyjdziesz, Twój wynik nie zostanie zapisany. Czy mimo tego chcesz przerwać?')"/>
     </form>
     <div class="biale_pole">
     <div class="kwadrat">

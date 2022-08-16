@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../static/style.css" media="screen"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&&family=Quicksand&display=swap" rel="stylesheet">
     <link rel="icon" href="../static/image10.png" type="image/icon type">
     <script>
     if ( window.history.replaceState ) {
@@ -21,7 +21,7 @@
     </div>    <!--<hr />-->
 </div>
 <div class="form">
-    <h2 id="h2_log">Zaloguj się</h2>
+    <h2 id="h2_log"><span class="text"> Zaloguj się </span></h2>
     <form action="" method="post">
        {{ form.hidden_tag() }}
        <div>
@@ -50,6 +50,7 @@
        <p style="color: red;">Nieprawidłowe haslo lub email</p>
        {% endfor %}
        <p>{{ form.submit(style ='font-size: 16px;
+         font-family: Quicksand, sans-serif;
          font-weight: 200;
          letter-spacing: 1px;
          padding: 13px 20px 13px;

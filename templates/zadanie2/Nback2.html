@@ -45,8 +45,7 @@
             Na ekranie będą pojawiać się kolejne litery.<br><br>
             <b> Twoim zadaniem będzie zdecydowanie czy litera, którą zobaczysz,
             jest tą samą literą, którą widziałeś n liter wcześniej.</b>
-            <br><br> Ćwiczenie rozpoczyna się od n równego 1. Maksymalna wartość n wynosi 3. Potem ćwiczenie kończy się.
-            <br><br> Jeżeli odpowiesz poprawnie ramka będzie<span style="color:#afb42b"><b> zielona</b></span>, jeżeli źle <span style="color:#e64a19"><b>czerwona</b></span> <a style= "text-decoration:none"href="http://wierzba.wzks.uj.edu.pl:5122/bibliografia">[2]</a>
+            <br><br> Ćwiczenie rozpoczyna się od n równego 1. Maksymalna wartość n wynosi 3. Potem ćwiczenie kończy się.<a style= "text-decoration:none"href="http://wierzba.wzks.uj.edu.pl:5122/bibliografia">[2]</a>
         </div>
     </div>
     <div  class="buttons">
@@ -59,19 +58,15 @@
     </div>
     <div id="N-back" class="tabcontent">
         <div class="second" id="second">
-            <div type="text/html"  id='chart' class='chart'></div>
+            <embed id="embed" type="text/html" src="http://wierzba.wzks.uj.edu.pl:5122/wykres2"  style="width: 1100px; height: 600px;">
         </div>
     </div>
 </div>
 </body>
 <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 <script type='text/javascript'>
-    var chart ={{graphJSON2 | safe}};
-    var data = chart["data"];
-    var layout = {title: 'N-back test'};
-    var config = {responsive: true};
-    Plotly.plot('chart', data, layout, config);
-
+  var graphs = {{graphJSON1 | safe}};
+  Plotly.plot('chart',graphs,{});
 </script>
 <script>
     function openCity(evt, cityName) {
@@ -90,6 +85,3 @@
     document.getElementById("defaultOpen").click();
 </script>
 </html>
-
-
-

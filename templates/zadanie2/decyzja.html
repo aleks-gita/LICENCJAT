@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&&family=Quicksand&display=swap" rel="stylesheet">
     <title>Decyzja</title>
 
 <script>
@@ -79,54 +80,51 @@
     </style>
 </head>
 <body>
-    <!---
-    <form action="{{url_for('index')}}" method="get">
-        <button class="logout_button" id="powrot" type="submit"><span class="text"> Powrót do strony głównej </span></button>
+    <form action="http://wierzba.wzks.uj.edu.pl:5122/index" method="get">
+         <input class="logout_button" id="powrot" type="submit" value="Przerwij" onclick="return confirm('Jeżeli teraz wyjdziesz, Twój wynik nie zostanie zapisany. Czy mimo tego chcesz przerwać?')"/>
     </form>
-    --->
-
-        <div class="circles">
-            <div class="circle-green">Dobrze:{{zadanie2.punkty}}</div>
-            <div class="circle-red">Zle:{{zadanie2.punkty_zle}}</div>
-        </div>
-        <div class="biale_pole">
-             <div class="kwadrat">
-             <div class="dzialanie">
-                 <div class="podstrona">
-                {%if zadanie2.kolor == None%}
-                    <hr class="black"/>
-                        <p> +  </p>
-                    <hr class="black"/>
-                {%elif zadanie2.kolor == 1%}
-                    <hr class="green"/>
-                        <p> + </p>
-                    <hr class="green"/>
-                {%elif zadanie2.kolor == 0%}
-                    <hr class="red"/>
-                        <p> +  </p>
-                    <hr class="red"/>
-                {%endif%}
+    <div class="circles">
+        <div class="circle-green">Dobrze:{{zadanie2.punkty}}</div>
+        <div class="circle-red">Zle:{{zadanie2.punkty_zle}}</div>
+    </div>
+    <div class="biale_pole">
+         <div class="kwadrat">
+         <div class="dzialanie">
+             <div class="podstrona">
+            {%if zadanie2.kolor == None%}
+                <hr class="black"/>
+                    <p> +  </p>
+                <hr class="black"/>
+            {%elif zadanie2.kolor == 1%}
+                <hr class="green"/>
+                    <p> + </p>
+                <hr class="green"/>
+            {%elif zadanie2.kolor == 0%}
+                <hr class="red"/>
+                    <p> +  </p>
+                <hr class="red"/>
+            {%endif%}
 
 
-        <!--<button onclick="stopClock();">Stop Clock</button>-->
+    <!--<button onclick="stopClock();">Stop Clock</button>-->
 
-                <form action="" method="post" class="TAK" name="TAK">
-                    <input type="hidden" name="action" value="TAK" id="Tak">
-                     <input type="hidden" name="czas" id ="time_val_tak" value = "">
-                </form>
-                <form action="" method="post" class="NIE" name="NIE">
-                    <input type="hidden" name="action" value="NIE" id="Nie">
-                    <input type="hidden" name="czas" id ="time_val_nie" value = "">
-                </form>
-                <form action="" method="post" class="BRAK" name="BRAK">
-                    <input type="hidden" name="action" value="BRAK" id="Brak">
-                    <input type="hidden" name="czas" id ="time_val_brak" value = "">
-                </form>
-                <form action="" method="post" name="czas"></form>
-             </div>
-             </div>
-             </div>
-        </div>
+            <form action="" method="post" class="TAK" name="TAK">
+                <input type="hidden" name="action" value="TAK" id="Tak">
+                 <input type="hidden" name="czas" id ="time_val_tak" value = "">
+            </form>
+            <form action="" method="post" class="NIE" name="NIE">
+                <input type="hidden" name="action" value="NIE" id="Nie">
+                <input type="hidden" name="czas" id ="time_val_nie" value = "">
+            </form>
+            <form action="" method="post" class="BRAK" name="BRAK">
+                <input type="hidden" name="action" value="BRAK" id="Brak">
+                <input type="hidden" name="czas" id ="time_val_brak" value = "">
+            </form>
+            <form action="" method="post" name="czas"></form>
+         </div>
+         </div>
+         </div>
+    </div>
 
 
 

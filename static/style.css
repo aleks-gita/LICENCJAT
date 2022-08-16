@@ -16,7 +16,7 @@ body{
 .str_p_h1{
   text-decoration: none;
   text-align: center;
-  font-family: 'Caveat', cursive;
+  font-family: 'Quicksand', sans-serif;
   font-size: 50px;
   color: #000000;
 }
@@ -100,6 +100,7 @@ body{
   }
 }
 .start_buttons span {
+  font-family: 'Quicksand', sans-serif;
   z-index: 1;
   position: relative;
 }
@@ -119,7 +120,7 @@ body{
   color: #222222;
   cursor: pointer;
   display: inline-block;
-  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+  font-family: 'Quicksand', sans-serif;
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;
@@ -233,27 +234,39 @@ body{
 }
 .tabcontent {
   text-align: center;
-  background-color:#efebe9 ;
-
+  background-color:#efebe9;
   margin-top: 50px;
-  margin-right: auto;
-  margin-left: auto;
   display: none;
+
 }
 .second{
   text-align: center;
-  height:520px;
-  width: 1020px;
   margin-right: auto;
-  margin-left: auto;
 }
-
+.chart{
+  max-width: 1500px;
+  width: 100%;
+  margin-left:auto;
+  margin-right:  auto;
+}
 .tresc_strony{
   //background-color: rgb(239, 235, 233, 0.89);
   text-align: center;
   padding: 10px;
   margin: 10px
+}
+.koniec{
+  //background-color: rgb(239, 235, 233, 0.89);
+  text-align: center;
+  padding-top: 10%;
+  margin: 10px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
 
+}
+.koniec_p{
+  //background-color: rgb(239, 235, 233, 0.89);
+  text-align: left;
 }
 .opis_start{
   border-radius: 14px;
@@ -392,6 +405,13 @@ body{
 @media all and (max-width: 1060px) {
   .second {
     width: 520px;
-
   }
+}
+
+@media all and (min-width: 1200px) {
+  .chart{
+  max-width: 1200px;
+  width: 100%;
+
+}
 }

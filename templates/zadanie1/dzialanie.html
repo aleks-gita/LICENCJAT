@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../../static/style.css" media="screen"/>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&&family=Quicksand&display=swap" rel="stylesheet">
     <title>Dzialanie</title>
 </head>
 <body>
+    <form action="{{ url_for('index') }}" method="get">
+         <input class="logout_button" id="powrot" type="submit" value="Przerwij" onclick="return confirm('Jeżeli teraz wyjdziesz, Twój wynik nie zostanie zapisany. Czy mimo tego chcesz przerwać?')"/>
+    </form>
     <div class="biale_pole">
     <div class="kwadrat">
         {% for dzialanie in zadanie.wyswietl() %}
